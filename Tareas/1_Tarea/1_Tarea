@@ -1,0 +1,9 @@
+# Write a C project that reads the information at /proc/stat, /proc/cpuinfo and /proc/meminfo periodically (every two seconds), and show i_n the screen:
+# - How much installed memory the system has.
+# - How much physical and virtual memory is being used.
+# - What kind of processor the system has.
+# - How many cores are present i_n the system.
+# - The system processor load per core.
+# The project should be version-controlled using git, either locally or i_n the cloud (Github, Gitlab, ).
+
+# TIP: You can use a text-user-interface (TUI) library to present the information on screen.
