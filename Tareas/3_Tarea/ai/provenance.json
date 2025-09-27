@@ -1,0 +1,18 @@
+{
+  "ai_used": true,
+  "assistants": [
+    {
+      "name": "GitHub Copilot",
+      "model": "unspecified (workspace assistant)",
+      "tools": ["file-io", "apply_patch"],
+      "date_start": "2025-09-26T00:00:00Z",
+      "date_end": "2025-09-26T00:30:00Z"
+    },
+    {
+      "name": "ChatGPT",
+      "model": "GPT-4",
+      "url": "https://chatgpt.com/share/68d7286e-92bc-8001-97e6-b896a3bf43a4",
+      "date": "2025-09-26"
+    }
+  ]
+}

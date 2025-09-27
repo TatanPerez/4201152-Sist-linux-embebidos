@@ -1,81 +1,26 @@
-# CC=gcc
-# CFLAGS=-std=c11 -O2 -Wall -Wextra
-# BUILD_DIR=build
-# BINARY=$(BUILD_DIR)/assignment-sensor
-
-# .PHONY: all build install uninstall clean
-
-# all: build
-
-# build: src/assignment-sensor.c
-# 	@echo "Building with $(CC)..."
-# 	@mkdir -p $(BUILD_DIR)
-# 	$(CC) $(CFLAGS) -o $(BINARY) src/assignment-sensor.c
-
-# install: build
-# 	@echo "Installing to /usr/local/bin (may require sudo)"
-# 	sudo install -m 0755 $(BINARY) /usr/local/bin/assignment-sensor
-
-# uninstall:
-# 	@echo "Removing /usr/local/bin/assignment-sensor"
-# 	sudo rm -f /usr/local/bin/assignment-sensor
-
-# clean:
-# 	@echo "Cleaning build artifacts"
-# 	rm -rf $(BUILD_DIR)
-# BINARY=/usr/local/bin/assignment-sensor
-# BUILD_DIR=build
-# GOFLAGS=
-
-# .PHONY: all build install uninstall clean test
-
-# all: build
-
-# build:
-# 	@echo "Building..."
-# 	@mkdir -p $(BUILD_DIR)
-# 	GOOS=linux GOARCH=amd64 go build -o $(BUILD_DIR)/assignment-sensor ./src
-
-# install: build
-# 	@echo "Installing to $(BINARY) (may require sudo)"
-# 	sudo install -m 0755 $(BUILD_DIR)/assignment-sensor $(BINARY)
-
-# uninstall:
-# 	@echo "Removing $(BINARY)"
-# 	sudo rm -f $(BINARY)
-
-# clean:
-# 	@echo "Cleaning..."
-# 	rm -rf $(BUILD_DIR)
-
-# test:
-# 	@echo "Run tests described in tests/README.md"
-
-# Makefile para assignment-sensor (proyecto en C)
-
 CC=gcc
-CFLAGS=-std=c11 -O2 -Wall -Wextra
-BUILD_DIR=build
-BINARY=$(BUILD_DIR)/assignment-sensor
+CFLAGS=-Wall -Wextra -O2 -std=c11
 SRC=src/assignment-sensor.c
+OUTDIR=build
+BIN=$(OUTDIR)/assignment-sensor
+PREFIX=/usr/local
 
-.PHONY: all build install uninstall clean
+all: $(BIN)
 
-all: build
+$(OUTDIR):
+	mkdir -p $(OUTDIR)
 
-build: $(SRC)
-	@echo "Building with $(CC)..."
-	@mkdir -p $(BUILD_DIR)
-	$(CC) $(CFLAGS) -o $(BINARY) $(SRC)
+$(BIN): | $(OUTDIR)
+	$(CC) $(CFLAGS) -o $(BIN) $(SRC)
 
-install: build
-	@echo "Installing to /usr/local/bin (may require sudo)"
-	sudo install -m 0755 $(BINARY) /usr/local/bin/assignment-sensor
+install: $(BIN)
+	install -d $(PREFIX)/bin
+	install -m 755 $(BIN) $(PREFIX)/bin/assignment-sensor
 
 uninstall:
-	@echo "Removing /usr/local/bin/assignment-sensor"
-	sudo rm -f /usr/local/bin/assignment-sensor
+	rm -f $(PREFIX)/bin/assignment-sensor
 
 clean:
-	@echo "Cleaning build artifacts"
-	rm -rf $(BUILD_DIR)
+	rm -rf $(OUTDIR)
+
+.PHONY: all install uninstall clean

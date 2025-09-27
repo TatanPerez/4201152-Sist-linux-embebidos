@@ -1,47 +1,36 @@
-Manual tests for assignment-sensor (C implementation)
+Tests for assignment-sensor
 
-1) Build and install
+1) Start service and check log output
 
-```bash
-make build
-sudo make install
-```
+- Build and install:
+  sudo make install
+  sudo cp systemd/assignment-sensor.service /etc/systemd/system/
+  sudo systemctl daemon-reload
+  sudo systemctl enable assignment-sensor
+  sudo systemctl start assignment-sensor
+- Check log file (default /tmp/assignment_sensor.log or /var/tmp fallback)
+  tail -f /tmp/assignment_sensor.log
 
-2) Install systemd unit and enable
+2) Force /tmp unwritable to test fallback
 
-```bash
-sudo cp systemd/assignment-sensor.service /etc/systemd/system/
-sudo systemctl daemon-reload
-sudo systemctl enable --now assignment-sensor.service
-sudo journalctl -u assignment-sensor -f
-```
+- Temporarily make /tmp unwritable (example using bind mount):
+  sudo mount --bind /var/empty /tmp
+- Start the program using /tmp as logfile path and ensure the file is created under /var/tmp
 
-3) Verify logs
+3) Stop service with systemctl stop and verify clean shutdown
 
-Check `/tmp/assignment_sensor.log` for lines of the form:
+- sudo systemctl stop assignment-sensor
+- sudo systemctl status assignment-sensor
+- Check last lines of log for graceful shutdown message
 
-```
-2025-09-19T12:34:56Z d4f0c2a1...
-```
+4) Start with invalid device to check error handling
 
-4) Simulate `/tmp` not writable -> verify fallback to `/var/tmp`
+- /usr/local/bin/assignment-sensor --device /dev/doesnotexist --logfile /tmp/x.log
+- Expect non-zero exit and an error printed to stderr
 
-Make `/tmp` non-writable (do carefully and restore afterwards):
+5) Optional: kill process to test Restart=on-failure
 
-```bash
-sudo chmod a-w /tmp
-sudo systemctl restart assignment-sensor
-# look into /var/tmp/assignment_sensor.log for entries
-sudo chmod a+w /tmp
-```
-
-5) Stop service gracefully
-
-```bash
-sudo systemctl stop assignment-sensor
-# Service should exit and flush logs
-```
-
-6) Start with non-existent device
-
-Edit the unit to use a non-existent device and start; the service should fail with non-zero exit and log to journal.
+- sudo systemctl stop assignment-sensor
+- sudo systemctl start assignment-sensor
+- Find pid and kill -9 <pid>
+- Verify systemd restarts service (journalctl -u assignment-sensor)
