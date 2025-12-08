@@ -1,0 +1,13 @@
+# Target labels
+ bootloader
+# Source files and their labels
+/mnt/c/Users/tatan/Documentos/UNAL/8_License_Plate/Linux/4201152-Sist-linux-embebidos/Proyecto/Node_Tank/build/CMakeFiles/bootloader
+/mnt/c/Users/tatan/Documentos/UNAL/8_License_Plate/Linux/4201152-Sist-linux-embebidos/Proyecto/Node_Tank/build/CMakeFiles/bootloader.rule
+/mnt/c/Users/tatan/Documentos/UNAL/8_License_Plate/Linux/4201152-Sist-linux-embebidos/Proyecto/Node_Tank/build/CMakeFiles/bootloader-complete.rule
+/mnt/c/Users/tatan/Documentos/UNAL/8_License_Plate/Linux/4201152-Sist-linux-embebidos/Proyecto/Node_Tank/build/bootloader-prefix/src/bootloader-stamp/bootloader-build.rule
+/mnt/c/Users/tatan/Documentos/UNAL/8_License_Plate/Linux/4201152-Sist-linux-embebidos/Proyecto/Node_Tank/build/bootloader-prefix/src/bootloader-stamp/bootloader-configure.rule
+/mnt/c/Users/tatan/Documentos/UNAL/8_License_Plate/Linux/4201152-Sist-linux-embebidos/Proyecto/Node_Tank/build/bootloader-prefix/src/bootloader-stamp/bootloader-download.rule
+/mnt/c/Users/tatan/Documentos/UNAL/8_License_Plate/Linux/4201152-Sist-linux-embebidos/Proyecto/Node_Tank/build/bootloader-prefix/src/bootloader-stamp/bootloader-install.rule
+/mnt/c/Users/tatan/Documentos/UNAL/8_License_Plate/Linux/4201152-Sist-linux-embebidos/Proyecto/Node_Tank/build/bootloader-prefix/src/bootloader-stamp/bootloader-mkdir.rule
+/mnt/c/Users/tatan/Documentos/UNAL/8_License_Plate/Linux/4201152-Sist-linux-embebidos/Proyecto/Node_Tank/build/bootloader-prefix/src/bootloader-stamp/bootloader-patch.rule
+/mnt/c/Users/tatan/Documentos/UNAL/8_License_Plate/Linux/4201152-Sist-linux-embebidos/Proyecto/Node_Tank/build/bootloader-prefix/src/bootloader-stamp/bootloader-update.rule

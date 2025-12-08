@@ -1,0 +1,70 @@
+# Archivo de git ignore para proyecto ESP-IDF
+# Nodo de Sensor y Control de Cisterna
+
+# Directorios de build
+build/
+dist/
+sdkconfig.old
+sdkconfig.defaults
+
+# Archivos de IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+.DS_Store
+*.sublime-workspace
+
+# Archivos de compilación
+*.o
+*.a
+*.elf
+*.bin
+*.map
+*.d
+*.sym
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.egg-info/
+.Python
+env/
+venv/
+
+# Logs
+*.log
+logs/
+
+# Archivos temporales
+*.tmp
+*.temp
+*.bak
+
+# Configuración local
+sdkconfig.local
+sdkconfig.local.old
+
+# Monitor output
+monitor.log
+
+# Archivos específicos de Windows
+Thumbs.db
+*.lnk
+
+# Archivos específicos de macOS
+.AppleDouble
+.LSOverride
+
+# Dependencias externas
+components/*/
+lib/
+
+# Archivos de documentación generados (opcional)
+docs/_build/
+docs/.doctrees/
+
+# Partitions generadas
+partitions_*.bin

@@ -1,0 +1,6 @@
+; Archivo de configuración del particionamiento para ESP32-C6
+; Nodo de Sensor y Control de Cisterna
+
+; Nombre                   Tipo   Subtype   Offset    Tamaño   Comentario
+nvs                         data  nvs       0x9000    0x4000   
+partition0                  app   factory   0x10000   0x1F0000  ; ~1984KB para aplicación

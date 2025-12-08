@@ -1,0 +1,107 @@
+# Proyecto: NODO DE SENSOR Y CONTROL DE CISTERNA CON ESP32-C6
+# Descripción: Sistema IoT de monitoreo y control de cisterna
+# Autor: Sistema automatizado
+# Fecha: 2025
+
+menu "Configuración del Nodo de Cisterna"
+
+    config CISTERNA_WIFI_SSID
+        string "SSID de la red Wi-Fi"
+        default "TU_SSID_AQUI"
+        help
+            SSID (nombre) de la red Wi-Fi a la que se conectará el ESP32-C6
+
+    config CISTERNA_WIFI_PASSWORD
+        string "Contraseña de Wi-Fi"
+        default "TU_PASSWORD_AQUI"
+        help
+            Contraseña de la red Wi-Fi
+
+    config CISTERNA_MQTT_BROKER
+        string "URI del Broker MQTT"
+        default "mqtt://192.168.1.100:1883"
+        help
+            Dirección del broker MQTT
+            Ejemplos:
+            - mqtt://192.168.1.100:1883 (local)
+            - mqtt://raspberrypi.local:1883
+            - mqtts://broker.example.com:8883 (con TLS)
+
+    config CISTERNA_MQTT_CLIENT_ID
+        string "ID del Cliente MQTT"
+        default "esp32c6_cisterna"
+        help
+            Identificador único del cliente en el broker MQTT
+
+    config CISTERNA_ULTRASONIC_TRIG_PIN
+        int "Pin GPIO - Sensor Ultrasónico TRIG"
+        default 10
+        range 0 48
+        help
+            Pin GPIO para la señal TRIGGER del sensor ultrasónico HC-SR04
+
+    config CISTERNA_ULTRASONIC_ECHO_PIN
+        int "Pin GPIO - Sensor Ultrasónico ECHO"
+        default 9
+        range 0 48
+        help
+            Pin GPIO para la señal ECHO del sensor ultrasónico HC-SR04
+
+    config CISTERNA_TDS_ADC_PIN
+        int "Canal ADC - Sensor TDS"
+        default 0
+        range 0 5
+        help
+            Canal ADC para la lectura del sensor TDS
+            ADC1 disponible en canales 0-5
+
+    config CISTERNA_PUMP_RELAY_PIN
+        int "Pin GPIO - Relé HW-307"
+        default 8
+        range 0 48
+        help
+            Pin GPIO que controla el relé HW-307 para la bomba sumergible
+
+    config CISTERNA_WATER_LEVEL_LOW_THRESHOLD
+        float "Umbral de Nivel Bajo (cm)"
+        default 20.0
+        range 0.0 100.0
+        help
+            Nivel de agua por debajo del cual se activa la bomba
+
+    config CISTERNA_WATER_LEVEL_HIGH_THRESHOLD
+        float "Umbral de Nivel Alto (cm)"
+        default 180.0
+        range 100.0 500.0
+        help
+            Nivel de agua por encima del cual se desactiva la bomba
+
+    config CISTERNA_WATER_CLEAN_TDS_MAX
+        int "TDS Máximo para Agua Limpia (ppm)"
+        default 300
+        range 0 2000
+        help
+            Valor máximo de TDS para considerar el agua limpia
+
+    config CISTERNA_WATER_MEDIUM_TDS_MAX
+        int "TDS Máximo para Agua Média (ppm)"
+        default 600
+        range 300 3000
+        help
+            Valor máximo de TDS para considerar el agua en estado medio
+
+    config CISTERNA_SAMPLING_INTERVAL_MS
+        int "Intervalo de Muestreo (ms)"
+        default 1000
+        range 100 10000
+        help
+            Intervalo en milisegundos entre lecturas de sensores
+
+    config CISTERNA_MQTT_PUBLISH_INTERVAL_MS
+        int "Intervalo de Publicación MQTT (ms)"
+        default 1000
+        range 100 10000
+        help
+            Intervalo en milisegundos para publicar datos en MQTT
+
+endmenu
