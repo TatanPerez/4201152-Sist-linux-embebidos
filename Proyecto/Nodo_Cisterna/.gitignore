@@ -58,10 +58,6 @@ Thumbs.db
 .AppleDouble
 .LSOverride
 
-# Dependencias externas
-components/*/
-lib/
-
 # Archivos de documentación generados (opcional)
 docs/_build/
 docs/.doctrees/

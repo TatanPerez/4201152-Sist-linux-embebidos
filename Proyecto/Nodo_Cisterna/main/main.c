@@ -17,9 +17,7 @@
 #include "tasks.h"
 
 #define WIFI_SSID       "Casa de Tatan"        // Cambiar por el SSID de tu red Wi-Fi
-#define WIFI_PASSWORD   "12312312380"    // Cambiar por la contraseña de tu red Wi-Fi
-#define DEFAULT_MQTT_BROKER_URI "mqtt://10.162.31.132:1883"  // Cambiar según broker
-
+#define WIFI_PASSWORD   "123123123"    // Cambiar por la contraseña de tu red Wi-Fi
 static const char *TAG = "CISTERNA_MAIN";
 
 // Variables globales para configuración
@@ -189,7 +187,7 @@ void app_main(void)
     // 3. Inicializar MQTT
     ESP_LOGI(TAG, "→ Inicializando MQTT...");
     mqtt_config_t mqtt_cfg = {
-        .broker_uri = DEFAULT_MQTT_BROKER_URI,  // Cambiar según broker
+        .broker_uri = "mqtt://10.162.31.132:1883",  // Cambiar según broker
         .client_id = "esp32c6_cisterna",
         .username = "",  // Opcional
         .password = ""   // Opcional
