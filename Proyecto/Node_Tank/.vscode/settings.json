@@ -13,6 +13,6 @@
   ],
   "idf.flashType": "UART",
   "idf.portWin": "COM11",
-  "idf.pythonInstallPath": "C:\\Users\\tatan\\.espressif\\tools\\idf-python\\3.11.2\\python.exe",
+  "idf.pythonInstallPath": "/home/tatan/.espressif/python_env/idf5.1_py3.12_env/bin/python",
   "idf.port": "/dev/ttyACM0"
 }
