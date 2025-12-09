@@ -73,4 +73,11 @@ water_state_t sensor_classify_water_quality(float tds_value);
  */
 esp_err_t sensor_read_all(sensor_data_t *data);
 
+/* Simple programmatic command API so external tasks (UART handler) can invoke
+    calibration without using esp_console/argtable which has caused instability. */
+void sensor_do_calA(void);
+void sensor_do_calB(void);
+void sensor_do_save(void);
+void sensor_do_show(void);
+
 #endif // SENSOR_H

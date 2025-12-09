@@ -3,4 +3,4 @@
 
 ; Nombre                   Tipo   Subtype   Offset    Tamaño   Comentario
 nvs                         data  nvs       0x9000    0x4000   
-partition0                  app   factory   0x10000   0x1F0000  ; ~1984KB para aplicación
+partition0                  app   factory   0x10000   0x200000  ; ~1984KB para aplicación

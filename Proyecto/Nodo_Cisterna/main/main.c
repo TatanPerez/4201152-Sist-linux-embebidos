@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <string.h>
+#include <stdlib.h>
 #include <inttypes.h>
 #include "driver/gpio.h"
 #include "esp_log.h"
@@ -9,6 +10,12 @@
 #include "freertos/task.h"
 #include "freertos/semphr.h"
 
+#include "esp_console.h"
+#include "linenoise/linenoise.h"
+#include "esp_vfs_dev.h"
+#include "driver/uart.h"
+#include <strings.h>
+
 // Componentes locales
 #include "wifi.h"
 #include "mqtt.h"
@@ -16,9 +23,9 @@
 #include "sensor.h"
 #include "tasks.h"
 
-#define WIFI_SSID       "RPi-Hotspot"        // Cambiar por el SSID de tu red Wi-Fi
-#define WIFI_PASSWORD   "12345678"    // Cambiar por la contraseña de tu red Wi-Fi
-#define MQTT_BROKER_URI "mqtt://10.42.0.1:1883"  // Cambiar según broker 10.162.31.132  10.42.0.1
+#define WIFI_SSID       "Casa de Tatan"        // Cambiar por el SSID de tu red Wi-Fi RPi-Hotspot
+#define WIFI_PASSWORD   "123123123"    // Cambiar por la contraseña de tu red Wi-Fi
+#define MQTT_BROKER_URI "mqtt://10.162.31.132:1883"  // Cambiar según broker 10.162.31.132  10.42.0.1     10.42.0.111
 static const char *TAG = "CISTERNA_MAIN";
 
 // Variables globales para configuración
@@ -59,7 +66,13 @@ static void sensor_read_and_publish_task(void *pvParameters)
     
     const uint32_t publish_interval = 1000;  // 1 segundo
     sensor_data_t sensor_data;
-    char json_payload[512];
+    const size_t json_buf_sz = 512;
+    char *json_payload = (char *) malloc(json_buf_sz);
+    if (json_payload == NULL) {
+        ESP_LOGE(TAG, "✗ No memory for JSON buffer");
+        vTaskDelete(NULL);
+        return;
+    }
     
     while (1) {
         // Leer datos de sensores de forma segura (con semáforo)
@@ -86,7 +99,7 @@ static void sensor_read_and_publish_task(void *pvParameters)
             const char *water_state_str[] = {"LIMPIA", "MEDIA", "SUCIA"};
             const char *pump_state_str = tasks_get_pump_relay_state() ? "ON" : "OFF";
             
-            snprintf(json_payload, sizeof(json_payload),
+                snprintf(json_payload, json_buf_sz,
                      "{"
                      "\"nivel_agua_cm\":%.2f,"
                      "\"tds_ppm\":%.1f,"
@@ -139,6 +152,104 @@ static void nvs_init(void)
         ret = nvs_flash_init();
     }
     ESP_ERROR_CHECK(ret);
+}
+
+// Console REPL task (defined as a proper C function instead of a C++ lambda)
+static void console_repl_task(void *arg)
+{
+    (void)arg;
+    ESP_LOGI(TAG, "→ Console REPL task starting");
+    /* Initialize console but avoid heavy linenoise features that consume significant stack.
+       Use VFS UART driver and a small heap-allocated input buffer read via fgets(). */
+    esp_console_config_t cfg = ESP_CONSOLE_CONFIG_DEFAULT();
+    ESP_ERROR_CHECK( esp_console_init(&cfg) );
+    esp_console_register_help_command();
+
+    /* Enable VFS for the UART used by the console */
+    esp_vfs_dev_uart_use_driver(CONFIG_CONSOLE_UART_NUM);
+    /* Disable stdio buffering for immediate echo/read */
+    setvbuf(stdin, NULL, _IONBF, 0);
+
+    const size_t line_sz = 256;
+    char *line = (char *) calloc(1, line_sz);
+    if (line == NULL) {
+        ESP_LOGE(TAG, "✗ No se pudo reservar memoria para la consola");
+        vTaskDelete(NULL);
+        return;
+    }
+
+    const char *prompt = "cisterna> ";
+    while (true) {
+        // Print prompt and read a line using fgets which allocates input on the heap
+        fputs(prompt, stdout);
+        fflush(stdout);
+        if (fgets(line, line_sz, stdin) == NULL) {
+            vTaskDelay(pdMS_TO_TICKS(100));
+            continue;
+        }
+
+        // Strip newline
+        size_t len = strlen(line);
+        if (len > 0 && (line[len-1] == '\n' || line[len-1] == '\r')) {
+            line[len-1] = '\0';
+            if (len > 1 && line[len-2] == '\r') line[len-2] = '\0';
+        }
+
+        if (strlen(line) > 0) {
+            int ret;
+            esp_console_run(line, &ret);
+        }
+    }
+    free(line);
+}
+
+// Minimal UART command parser task. Reads lines from UART0 and calls sensor handlers.
+static void uart_command_task(void *arg)
+{
+    (void)arg;
+    ESP_LOGI(TAG, "→ UART command task starting");
+    uart_config_t uart_config = {
+        .baud_rate = 115200,
+        .data_bits = UART_DATA_8_BITS,
+        .parity = UART_PARITY_DISABLE,
+        .stop_bits = UART_STOP_BITS_1,
+        .flow_ctrl = UART_HW_FLOWCTRL_DISABLE
+    };
+    uart_param_config(UART_NUM_0, &uart_config);
+    // RX buffer 256, no TX buffer
+    uart_driver_install(UART_NUM_0, 256, 0, 0, NULL, 0);
+
+    char line[128];
+    int idx = 0;
+    while (1) {
+        uint8_t ch;
+        int len = uart_read_bytes(UART_NUM_0, &ch, 1, pdMS_TO_TICKS(100));
+        if (len > 0) {
+            if (ch == '\r' || ch == '\n') {
+                if (idx > 0) {
+                    line[idx] = '\0';
+                    ESP_LOGI(TAG, "UART CMD received: %s", line);
+                    if (strcasecmp(line, "calA") == 0) {
+                        sensor_do_calA();
+                    } else if (strcasecmp(line, "calB") == 0) {
+                        sensor_do_calB();
+                    } else if (strcasecmp(line, "save") == 0) {
+                        sensor_do_save();
+                    } else if (strcasecmp(line, "show") == 0) {
+                        sensor_do_show();
+                    } else {
+                        ESP_LOGI(TAG, "Unknown command: %s", line);
+                    }
+                    idx = 0;
+                }
+            } else {
+                if (idx < (int)sizeof(line) - 1) {
+                    line[idx++] = (char)ch;
+                }
+            }
+        }
+        vTaskDelay(pdMS_TO_TICKS(10));
+    }
 }
 
 /**
@@ -219,12 +330,16 @@ void app_main(void)
     }
     
     // 5. Crear tarea de lectura y publicación
+    // Increase stack for sensor task to reduce risk of stack overflow (allocations done on heap)
     xTaskCreate(sensor_read_and_publish_task, 
                 "sensor_task", 
-                4096,                      // Stack size
+                8192,                      // Stack size (increased)
                 NULL,                      // Parámetros
                 3,                         // Prioridad (más alta)
                 NULL);                     // Handle
+
+    // Start minimal UART command task (reads lines and triggers sensor commands)
+    xTaskCreate(uart_command_task, "uart_cmd", 3072, NULL, 2, NULL);
     
     ESP_LOGI(TAG, "\n✓ INICIALIZACIÓN COMPLETADA");
     ESP_LOGI(TAG, "El sistema está en funcionamiento...\n");

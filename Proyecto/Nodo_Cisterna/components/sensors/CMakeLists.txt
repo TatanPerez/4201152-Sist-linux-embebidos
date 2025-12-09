@@ -2,4 +2,4 @@
 
 idf_component_register(SRCS "sensor.c"
                        INCLUDE_DIRS "."
-                       REQUIRES driver esp_adc esp_timer)
+                       REQUIRES driver esp_adc esp_timer tds adc_driver storage console)
