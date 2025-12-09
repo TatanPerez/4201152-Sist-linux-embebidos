@@ -42,31 +42,67 @@ Pin 8  → Relé HW-307 (control de bomba)
 ```
 nodo_cisterna/
 ├── main/
-│   ├── main.c                 # Aplicación principal
-│   └── CMakeLists.txt
+│   ├── main.c                 # Entrada de la aplicación, creación de tareas y configuración de periféricos
+│   ├── port_compat.c          # Adaptaciones de plataforma/compatibilidad (si aplica)
+│   └── CMakeLists.txt         # Objetivo del componente `app`
 ├── components/
 │   ├── wifi/
-│   │   ├── wifi.h             # Interfaz Wi-Fi
-│   │   ├── wifi.c             # Implementación Wi-Fi
+│   │   ├── wifi.h             # Interfaz y API pública para inicializar/gestionar Wi‑Fi
+│   │   ├── wifi.c             # Implementación: conexión, eventos y diagnósticos
 │   │   └── CMakeLists.txt
-│   ├── mqtt/
-│   │   ├── mqtt.h             # Interfaz MQTT
-│   │   ├── mqtt.c             # Implementación MQTT
+│   ├── mqtt/                  # Wrapper local para publicar/suscribirse (renombrado a evitar colisión con IDF)
+│   │   ├── mqtt.h             # API para conectar/publicar/suscribirse
+│   │   ├── mqtt.c             # Implementación cliente MQTT (usa IDF MQTT internamente)
 │   │   └── CMakeLists.txt
 │   ├── sensors/
-│   │   ├── sensor.h           # Interfaz de sensores
-│   │   ├── sensor.c           # Implementación de sensores
+│   │   ├── sensor.h           # API de sensores (ultrasonido, TDS) y funciones de calibración
+│   │   ├── sensor.c           # Implementaciones de lectura, formatos JSON y comandos UART
 │   │   └── CMakeLists.txt
-│   └── tasks/
-│       ├── tasks.h            # Interfaz de tareas
-│       ├── tasks.c            # Implementación de tareas
+│   ├── tds/
+│   │   ├── tds.h              # Lógica de conversión raw→ppm y manejo de calibración
+│   │   ├── tds.c              # Cálculo de offset/gain, save/load en NVS
+│   │   └── CMakeLists.txt
+│   ├── adc_driver/
+│   │   ├── adc_driver.h       # Wrappers de ADC (lecturas, muestras, voltaje)
+│   │   ├── adc_driver.c       # Implementación específica del ADC usado (oneshot / muestras)
+│   │   └── CMakeLists.txt
+│   ├── storage/
+│   │   ├── storage.h          # API simple para persistencia en NVS
+│   │   ├── storage.c          # Implementación de lectura/escritura de claves (tds_offset, tds_gain)
+│   │   └── CMakeLists.txt
+│   ├── tasks/
+│   │   ├── tasks.h            # Definición de configuraciones y prototipos de tareas
+│   │   ├── tasks.c            # Tasks auxiliares si las hubiera
+│   │   └── CMakeLists.txt
+│   └── misc/                  # Otros componentes auxiliares (p. ej. drivers específicos)
 │       └── CMakeLists.txt
-├── CMakeLists.txt             # Configuración principal
-├── sdkconfig                  # Configuración del proyecto
-├── Kconfig.projbuild          # Opciones de configuración
-├── partitions.csv             # Esquema de particiones
+├── build/                     # Directorio de salida de CMake/IDF (no commitear)
+├── CMakeLists.txt             # Configuración principal del proyecto (incluye componentes)
+├── sdkconfig                  # Archivo de configuración generado por `idf.py menuconfig`
+├── Kconfig.projbuild          # Opciones de configuración del proyecto
+├── partitions.csv             # Tabla de particiones para el flash
+├── scripts/                   # (opcional) scripts útiles (flash, formateo, snapshot)
+├── comandos-utiles.sh         # Script con comandos útiles del desarrollador
+├── setup_wsl.sh               # Scripts de preparación para WSL (si aplica)
 └── README.md                  # Este archivo
 ```
+
+Descripción breve de carpetas y archivos clave:
+
+- `main/main.c`: configura periféricos (UART, ADC, GPIO), inicializa `nvs_flash`, Wi‑Fi, MQTT, y crea las tareas FreeRTOS principales: la tarea de lectura/publicación de sensores y el lector UART para comandos (`uart_command_task`).
+- `components/wifi/`: encapsula la lógica de conexión Wi‑Fi, eventos y diagnósticos (se agregaron logs de razón de desconexión para depuración).
+- `components/mqtt/`: wrapper local que evita colisiones con el componente `mqtt` del ESP-IDF — expone funciones sencillas para publicar JSON y gestionar la conexión.
+- `components/sensors/`: incluye lecturas de ultrasonido y TDS; aquí también se exponen `sensor_do_calA/B/save/show` que son llamadas por el lector UART para calibración.
+- `components/tds/`: contiene la lógica de conversión raw→ppm y las funciones para establecer/calcular `offset` y `gain`, además de persistirlos en `storage`.
+- `components/adc_driver/`: centraliza la lectura ADC (muestras, promediado, conversión a voltaje) para facilitar cambios de hardware.
+- `components/storage/`: capa pequeña sobre NVS para guardar claves como `tds_offset` y `tds_gain`.
+
+Archivos y utilidades fuera del árbol de código fuente:
+
+- `comandos-utiles.sh`: colección de comandos útiles para build/flash/monitorización.
+- `setup_wsl.sh`: pasos automatizados para configurar ESP-IDF en WSL (útil para desarrolladores en Windows).
+
+Si necesitas, puedo añadir aquí un diagrama simple de dependencias entre componentes (por ejemplo: `main -> sensors -> tds -> storage`, `main -> wifi -> mqtt`).
 
 ---
 
@@ -291,6 +327,51 @@ mosquitto_pub -h 192.168.1.100 -t "cistern_control" -m "OFF"
 
 # Activar automático
 mosquitto_pub -h 192.168.1.100 -t "cistern_control" -m "AUTO"
+```
+
+### 6. Calibración TDS (UART)
+
+- **Descripción:** El firmware incluye comandos sencillos accesibles desde el monitor serie (UART) para calibrar el sensor TDS en campo.
+
+- **Comandos disponibles:**
+  - `calA` : Captura la lectura ADC actual y la guarda como punto A (offset).
+  - `calB` : Captura la lectura ADC actual y calcula la ganancia (gain) relativa al punto A.
+  - `save` : Persiste `tds_offset` y `tds_gain` en NVS (memoria no volátil).
+  - `show` : Muestra los valores actuales de `tds_offset` y `tds_gain`.
+
+- **Cómo usar:**
+  1. Abrir el monitor serie: `idf.py -p /dev/ttyUSB0 monitor`
+  2. Escribir el comando (`calA`, `calB`, `save`, `show`) y pulsar Enter (asegurar CR/LF).
+
+- **Flujo recomendado de calibración:**
+  1. Colocar el sensor en una muestra de referencia A (p. ej. agua destilada).
+  2. `calA` → toma lectura raw y la guarda como `offset`.
+  3. Colocar el sensor en una segunda muestra de referencia B (p. ej. solución con ppm conocida).
+  4. `calB` → toma lectura raw y calcula `gain = 1.0f / (rawB - offset)` (el firmware evita división por cero).
+  5. `save` → persiste `offset` y `gain` en NVS.
+  6. `show` → verificar valores guardados.
+
+- **Fórmula usada por el firmware:**
+
+  tds_ppm = (raw - offset) * gain * 1000.0f
+
+  - `raw` = lectura ADC actual
+  - `offset` = valor obtenido con `calA`
+  - `gain` = factor calculado con `calB`
+
+- **Notas y recomendaciones:**
+  - Calibrar con el sensor en condiciones estables y con soluciones de referencia conocidas.
+  - Ejecutar `calA` y `calB` en ese orden antes de `save`.
+  - Tras guardar, los valores se cargan automáticamente al iniciar el dispositivo.
+  - Por estabilidad del sistema, el proyecto reemplazó el uso de `esp_console`/linenoise por un lector UART mínimo que procesa líneas simples; esto evita problemas de inestabilidad relacionados con `vfprintf` o la pila.
+
+- **Ejemplo de sesión (monitor serie):**
+
+```
+[SENSOR] ✓ Punto A calibrado: offset=1234
+[SENSOR] ✓ Punto B calibrado: gain=0.002345
+[SENSOR] ✓ Calibración guardada: offset=1234 gain=0.002345
+[SENSOR] Calibración actual: offset=1234 gain=0.002345
 ```
 
 ---
