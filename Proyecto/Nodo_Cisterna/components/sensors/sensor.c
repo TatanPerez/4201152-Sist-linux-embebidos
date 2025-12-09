@@ -74,32 +74,6 @@ esp_err_t sensor_init(int ultrasonic_trig_pin, int ultrasonic_echo_pin,
     }
 
     // ========== Configurar sensor TDS (ADC) ==========
-    // adc_oneshot_unit_init_cfg_t init_config = {
-    //     .unit_id = ADC_UNIT_1,
-    //     .ulp_mode = ADC_ULP_MODE_DISABLE,
-    // };
-
-    // ret = adc_oneshot_new_unit(&init_config, &adc_handle);
-    // if (ret != ESP_OK) {
-    //     ESP_LOGE(TAG, "✗ Error inicializando ADC: %s", esp_err_to_name(ret));
-    //     return ret;
-    // }
-
-    // // Configurar canal ADC para TDS
-    // adc_oneshot_chan_cfg_t config = {
-    //     .bitwidth = ADC_BITWIDTH_DEFAULT,
-    //     .atten = ADC_ATTEN_DB_11,  // Rango 0-3600mV
-    // };
-
-    // ret = adc_oneshot_config_channel(adc_handle, (adc_channel_t)g_tds_adc_channel, 
-    //                                   &config);
-    // if (ret != ESP_OK) {
-    //     ESP_LOGE(TAG, "✗ Error configurando canal ADC: %s", esp_err_to_name(ret));
-    //     return ret;
-    // }
-
-    // ESP_LOGI(TAG, "✓ Sensores inicializados correctamente");
-    // return ESP_OK;
     adc_init(g_tds_adc_channel);
 
     tds_init();
@@ -297,36 +271,6 @@ void sensor_do_show(void)
  */
 esp_err_t sensor_read_tds(float *tds_value)
 {
-    // if (tds_value == NULL) {
-    //     return ESP_ERR_INVALID_ARG;
-    // }
-
-    // if (adc_handle == NULL) {
-    //     ESP_LOGE(TAG, "✗ Sensor TDS (ADC) no inicializado");
-    //     return ESP_ERR_INVALID_STATE;
-    // }
-
-    // int adc_reading = 0;
-    // esp_err_t ret = adc_oneshot_read(adc_handle, (adc_channel_t)g_tds_adc_channel, 
-    //                                  &adc_reading);
-    // if (ret != ESP_OK) {
-    //     ESP_LOGE(TAG, "✗ Error leyendo ADC: %s", esp_err_to_name(ret));
-    //     return ret;
-    // }
-
-    // // Convertir valor ADC a voltaje (3.3V rango)
-    // float voltage = (adc_reading / 4095.0f) * 3.3f;
-
-    // // Convertir voltaje a ppm usando calibración estándar
-    // // Fórmula: ppm = (Voltaje - 0.05) / 0.065
-    // *tds_value = (voltage - 0.05f) / 0.065f;
-
-    // // Limitar a rango razonable
-    // if (*tds_value < 0.0f) {
-    //     *tds_value = 0.0f;
-    // }
-
-    // return ESP_OK;
     if (!tds_value) return ESP_ERR_INVALID_ARG;
 
     float ppm = tds_read_ppm();  // <-- USA TU ALGORITMO REAL

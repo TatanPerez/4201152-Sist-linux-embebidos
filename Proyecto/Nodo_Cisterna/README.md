@@ -8,9 +8,22 @@ Sistema IoT completo para monitoreo y control automático de una cisterna de agu
 - **Monitoreo en tiempo real** de nivel y calidad del agua
 - **Control automático** de bomba sumergible basado en umbrales
 - **Control manual** de bomba mediante comandos MQTT
+- **Integración con Node-RED** en Raspberry Pi para dashboards y automatización
 - **Comunicación inalámbrica** vía Wi-Fi y MQTT
 - **Procesamiento concurrente** con tareas FreeRTOS
 - **Sincronización segura** con semáforos
+
+---
+
+## 🚀 Inicio Rápido - Integración Node-RED
+
+Para conectar con **Node-RED en Raspberry Pi**:
+
+1. **Lee:** `NODERED_INTEGRATION.md` (guía completa de integración)
+2. **Importa:** `NODERED_FLOW_EXAMPLE.json` (flujo de ejemplo en Node-RED)
+3. **Tópicos MQTT:**
+   - **Publica:** `cistern/water_level`, `cistern/tds_value`, `cistern/water_state`, `cistern/pump_state`
+   - **Suscribe:** `cistern_control` (recibe ON/OFF/AUTO)
 
 ---
 
@@ -101,8 +114,36 @@ Archivos y utilidades fuera del árbol de código fuente:
 
 - `comandos-utiles.sh`: colección de comandos útiles para build/flash/monitorización.
 - `setup_wsl.sh`: pasos automatizados para configurar ESP-IDF en WSL (útil para desarrolladores en Windows).
+- `NODERED_INTEGRATION.md`: guía completa de integración con Node-RED en Raspberry Pi.
+- `NODERED_FLOW_EXAMPLE.json`: flujo JSON importable en Node-RED (dashboards + controles).
 
-Si necesitas, puedo añadir aquí un diagrama simple de dependencias entre componentes (por ejemplo: `main -> sensors -> tds -> storage`, `main -> wifi -> mqtt`).
+---
+
+## Arquitectura de Comunicación MQTT
+
+```
+┌─────────────────────────────────────────────────────────────────┐
+│                                                                 │
+│  SENSORES (HC-SR04, TDS) → ESP32-C6 → WiFi → Broker MQTT       │
+│                              ↓                    ↑              │
+│                          (publica cada 1s)   (suscribir)        │
+│                              ↓                    ↑              │
+│                    cistern/water_level      cistern_control      │
+│                    cistern/tds_value        (ON/OFF/AUTO)        │
+│                    cistern/water_state                           │
+│                    cistern/pump_state                            │
+│                                                                 │
+│                              ↓                    ↑              │
+│                    Broker MQTT (RPi)                             │
+│                    10.42.0.111:1883                              │
+│                              ↓                    ↑              │
+│                                                                 │
+│  Node-RED Dashboard → Mostrar datos + Enviar comandos           │
+│  http://10.42.0.1:1880 (desde hotspot)                          │
+│  http://192.168.60.10:1880 (desde PC)                           │
+│                                                                 │
+└─────────────────────────────────────────────────────────────────┘
+```
 
 ---
 
@@ -145,8 +186,50 @@ MANUAL (vía MQTT "cistern_control"):
 
 ## Temas MQTT
 
-### Publicación (datos del sensor)
-**Topic:** `cistern_sensordata`
+### Publicación (datos del sensor) - Topics Separados
+
+El dispositivo publica datos en los siguientes tópicos **individuales** (formato recomendado para Node-RED):
+
+| Topic | Descripción | Ejemplo |
+|-------|------------|---------|
+| `cistern/water_level` | Nivel de agua en cm | `125.50` |
+| `cistern/tds_value` | Conductividad en ppm | `450.2` |
+| `cistern/water_state` | Estado del agua | `LIMPIA`, `MEDIA`, `SUCIA` |
+| `cistern/pump_state` | Estado de la bomba | `ON`, `OFF` |
+
+**Frecuencia:** Cada 1 segundo
+
+**Ejemplo de lectura en Node-RED:**
+```
+Suscribirse a:
+  - cistern/water_level → valor numérico
+  - cistern/tds_value → valor numérico
+  - cistern/water_state → texto
+  - cistern/pump_state → ON/OFF
+```
+
+### Suscripción (comandos de control)
+
+**Topic:** `cistern_control`
+
+**Valores aceptados:**
+- `ON` - Encender bomba manualmente
+- `OFF` - Apagar bomba manualmente
+- `AUTO` - Activar control automático
+
+**Ejemplo de envío desde Node-RED:**
+```javascript
+// Enviar comando ON
+publish("cistern_control", "ON", QoS: 1)
+
+// Enviar comando OFF
+publish("cistern_control", "OFF", QoS: 1)
+
+// Volver a automático
+publish("cistern_control", "AUTO", QoS: 1)
+```
+
+### Publicación JSON Completo (compatibilidad)
 
 **Formato JSON:**
 ```json
@@ -308,26 +391,47 @@ task_config_t task_cfg = {
 Lectura #1 | Nivel: 125.50 cm | TDS: 450.2 ppm (MEDIA) | Bomba: ON
 ```
 
-### 4. Publicación MQTT
-```bash
-# En otra terminal, suscribirse a mensajes
-mosquitto_sub -h 192.168.1.100 -t "cistern_sensordata"
+### 4. Publicación MQTT (Tópicos Separados)
 
-# Salida esperada:
-{"nivel_agua_cm":125.50,"tds_ppm":450.2,"estado_agua":"MEDIA","estado_bomba":"ON","timestamp":1234}
+Con Node-RED en Raspberry Pi:
+
+```bash
+# Terminal 1: Suscribirse al nivel de agua
+mosquitto_sub -h 10.42.0.111 -t "cistern/water_level"
+
+# Terminal 2: Suscribirse al TDS
+mosquitto_sub -h 10.42.0.111 -t "cistern/tds_value"
+
+# Terminal 3: Suscribirse al estado del agua
+mosquitto_sub -h 10.42.0.111 -t "cistern/water_state"
+
+# Terminal 4: Suscribirse al estado de la bomba
+mosquitto_sub -h 10.42.0.111 -t "cistern/pump_state"
 ```
 
-### 5. Control Manual de Bomba
-```bash
-# Encender bomba
-mosquitto_pub -h 192.168.1.100 -t "cistern_control" -m "ON"
-
-# Apagar bomba
-mosquitto_pub -h 192.168.1.100 -t "cistern_control" -m "OFF"
-
-# Activar automático
-mosquitto_pub -h 192.168.1.100 -t "cistern_control" -m "AUTO"
+**Salida esperada:**
 ```
+Terminal 1 (water_level): 125.50
+Terminal 2 (tds_value): 450.2
+Terminal 3 (water_state): MEDIA
+Terminal 4 (pump_state): ON
+```
+
+### 5. Control Manual de Bomba desde Node-RED
+
+Desde Node-RED en `http://10.42.0.1:1880` (o `http://192.168.60.10:1880` desde PC):
+
+```bash
+# Enviar comando por MQTT (desde línea de comandos para pruebas)
+mosquitto_pub -h 10.42.0.111 -t "cistern_control" -m "ON"
+mosquitto_pub -h 10.42.0.111 -t "cistern_control" -m "OFF"
+mosquitto_pub -h 10.42.0.111 -t "cistern_control" -m "AUTO"
+```
+
+**Desde Node-RED:**
+1. Crear un nodo **MQTT in** suscritor a `cistern/water_level`, `cistern/tds_value`, `cistern/water_state`, `cistern/pump_state`
+2. Crear un nodo **MQTT out** publicador a `cistern_control` con payload: `ON`, `OFF`, o `AUTO`
+3. Conectar botones o controles de interfaz para enviar comandos
 
 ### 6. Calibración TDS (UART)
 
