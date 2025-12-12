@@ -151,10 +151,9 @@ publish_mqtt_off() {
 }
 
 publish_mqtt_auto() {
-    local HOST=${1:-"192.168.1.100"}
-    echo -e "${YELLOW}[Enviando comando AUTO al topic cistern_control...]${NC}"
-    mosquitto_pub -h $HOST -t "cistern_control" -m "AUTO"
-    echo -e "${GREEN}✓ Comando enviado${NC}"
+    # Mode AUTO removed: The firmware no longer supports 'AUTO' as a control command.
+    # Use Node-RED to implement automation by publishing ON/OFF as required.
+    echo -e "${YELLOW}[Modo AUTO NO soportado en firmware. Usa Node-RED para automatización (publicar ON/OFF en cistern_control).]${NC}"
 }
 
 test_mqtt_connection() {
@@ -226,7 +225,7 @@ show_mqtt_topics() {
     echo ""
     echo "SUSCRIPCIÓN (entrada de comandos):"
     echo "  Topic: cistern_control"
-    echo "  Comandos: ON, OFF, AUTO"
+    echo "  Comandos: ON, OFF (AUTO deprecated - use Node-RED)"
     echo "  QoS: 1"
 }
 
@@ -355,7 +354,7 @@ else
             echo "  mqtt-sub [host]    - Suscribirse a datos MQTT"
             echo "  mqtt-on [host]     - Encender bomba"
             echo "  mqtt-off [host]    - Apagar bomba"
-            echo "  mqtt-auto [host]   - Modo automático"
+            echo "  mqtt-auto [host]   - Modo automático (deprecated - use Node-RED automation)"
             echo "  mqtt-test [host]   - Probar MQTT"
             echo "  status             - Ver información ESP-IDF"
             echo "  structure          - Ver estructura proyecto"

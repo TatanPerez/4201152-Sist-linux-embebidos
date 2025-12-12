@@ -98,7 +98,7 @@ Name: "Estado Bomba"
 
 ### 3. Crear Nodos de Control de Bomba
 
-#### Botón: Encender Bomba
+#### Botón: Encender Bomba (UI button — Node-RED Dashboard)
 
 ```
 Node Type: ui_button
@@ -108,7 +108,7 @@ Topic: (dejar vacío)
 Output to: mqtt_out (siguiente paso)
 ```
 
-#### Botón: Apagar Bomba
+#### Botón: Apagar Bomba (UI button — Node-RED Dashboard)
 
 ```
 Node Type: ui_button
@@ -118,7 +118,7 @@ Payload: OFF
 
 #### Note: Modo automático
 
-El firmware ya no implementa un modo `AUTO` interno. Para control automático, crea una lógica en Node-RED que publique `ON`/`OFF` en `cistern_control` basándose en reglas (nivel y/o calidad de agua).
+El firmware ya no implementa un modo `AUTO` interno ni un botón de hardware. Para control automático o manual, crea una lógica en Node-RED que publique `ON`/`OFF` en `cistern_control` basándose en reglas (nivel y/o calidad de agua). En la interfaz del dashboard, puedes usar `ui_button` para publicar `ON`/`OFF`.
 
 ### 4. Nodo MQTT Out para Enviar Comandos
 

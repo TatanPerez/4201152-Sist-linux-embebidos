@@ -84,7 +84,7 @@ cistern/pump_state    →  ON
 ### Que ESP32 ESCUCHA:
 ```
 cistern_control  ←  ON / OFF
-Nota: El modo manual (MANUAL) se sustituye por un botón físico en el ESP32: pulsar → ON, soltar → OFF.
+Nota: El firmware ya no soporta un botón físico local. Para control manual en el dashboard, usa `ui_button` en Node-RED que publique `ON`/`OFF` en `cistern_control`.
 ```
 
 ---
