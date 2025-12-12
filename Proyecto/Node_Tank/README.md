@@ -57,22 +57,24 @@ flowchart LR
 ## Diagrama de hardware
 ```mermaid
 graph TD
-    ESP[ESP32-S3]
-    PUMP[GPIO12 -> Bomba/LED]
-    TRIG[GPIO5 -> TRIG]
-    ECHO[GPIO18 <- ECHO (3.3V vía divisor)]
-    TDS[TDS probe -> GPIO7 (ADC1_CH6)]
-    VCC5[VCC 5V]
-    GND[GND común]
-
-    ESP --> PUMP
-    ESP --> TRIG
-    ECHO --> ESP
-    ESP --> TDS
+    ESP["ESP32-S3"]
+    PUMP["Bomba / LED (GPIO12)"]
+    TRIG["Ultrasonic TRIG (GPIO5)"]
+    ECHO["Ultrasonic ECHO (GPIO18 - 3.3V divisor)"]
+    TDS["TDS Sensor (GPIO7 - ADC1_CH6)"]
+    VCC5["5V Supply"]
+    GND["GND común"]
+    ESP -->|GPIO12| PUMP
+    ESP -->|GPIO5| TRIG
+    ECHO -->|GPIO18| ESP
+    TDS -->|ADC1_CH6| ESP
+    VCC5 --> PUMP
     VCC5 --> TRIG
     VCC5 --> ECHO
     VCC5 --> TDS
+
     GND --> ESP
+    GND --> PUMP
     GND --> TRIG
     GND --> ECHO
     GND --> TDS
