@@ -30,9 +30,8 @@ Node-RED envía comandos a:
 
 | Tópico | Valores | Efecto |
 |--------|---------|--------|
-| `cistern_control` | `ON` | Enciende bomba (modo manual) |
-| `cistern_control` | `OFF` | Apaga bomba (modo manual) |
-| `cistern_control` | `AUTO` | Activa control automático |
+| `cistern_control` | `ON` | Enciende bomba |
+| `cistern_control` | `OFF` | Apaga bomba |
 
 ---
 
@@ -99,7 +98,7 @@ Name: "Estado Bomba"
 
 ### 3. Crear Nodos de Control de Bomba
 
-#### Botón: Encender Bomba
+#### Botón: Encender Bomba (UI button — Node-RED Dashboard)
 
 ```
 Node Type: ui_button
@@ -109,7 +108,7 @@ Topic: (dejar vacío)
 Output to: mqtt_out (siguiente paso)
 ```
 
-#### Botón: Apagar Bomba
+#### Botón: Apagar Bomba (UI button — Node-RED Dashboard)
 
 ```
 Node Type: ui_button
@@ -117,13 +116,9 @@ Label: "OFF"
 Payload: OFF
 ```
 
-#### Botón: Modo Automático
+#### Note: Modo automático
 
-```
-Node Type: ui_button
-Label: "AUTO"
-Payload: AUTO
-```
+El firmware ya no implementa un modo `AUTO` interno ni un botón de hardware. Para control automático o manual, crea una lógica en Node-RED que publique `ON`/`OFF` en `cistern_control` basándose en reglas (nivel y/o calidad de agua). En la interfaz del dashboard, puedes usar `ui_button` para publicar `ON`/`OFF`.
 
 ### 4. Nodo MQTT Out para Enviar Comandos
 
@@ -209,8 +204,9 @@ mosquitto_pub -h 10.42.0.111 -t "cistern_control" -m "ON"
 # Apagar bomba
 mosquitto_pub -h 10.42.0.111 -t "cistern_control" -m "OFF"
 
-# Modo automático
-mosquitto_pub -h 10.42.0.111 -t "cistern_control" -m "AUTO"
+# Comandos de control
+mosquitto_pub -h 10.42.0.111 -t "cistern_control" -m "ON"
+mosquitto_pub -h 10.42.0.111 -t "cistern_control" -m "OFF"
 ```
 
 **Esperado:** 
@@ -219,16 +215,15 @@ mosquitto_pub -h 10.42.0.111 -t "cistern_control" -m "AUTO"
 
 ---
 
-## Lógica de Control Automático
+## Lógica de Control Automático (impleméntalo en Node-RED)
 
-**Cuándo se activa `AUTO` (Control Automático):**
+En lugar de enviar un comando `AUTO` al ESP, implementa la lógica en Node-RED que publique `ON` o `OFF` según las reglas de tu cisterna.
+
+Ejemplo de regla en Node-RED:
 
 ```
-SI nivel_agua < 20 cm Y agua_aceptable (≤ 600 ppm)
-  → Encender bomba
-
-SI nivel_agua > 180 cm O agua_sucia (> 600 ppm)
-  → Apagar bomba
+SI nivel_agua < 20 cm Y tds_ppm ≤ 600 → publicar `ON`
+SI nivel_agua > 180 cm O tds_ppm > 600 → publicar `OFF`
 ```
 
 **Mientras está en `ON` o `OFF` (manual):**

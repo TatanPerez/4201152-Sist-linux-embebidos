@@ -9,8 +9,8 @@ extern "C" {
 #endif
 
 // Pines usados por el HC-SR04
-#define HCSR04_TRIG_GPIO 5
-#define HCSR04_ECHO_GPIO 18
+#define HCSR04_TRIG_GPIO 2
+#define HCSR04_ECHO_GPIO 3
 
 // Inicializa los pines y recursos necesarios para el sensor ultrasónico
 void sensor_ultrasonico_init(void);

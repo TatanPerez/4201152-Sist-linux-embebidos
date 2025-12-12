@@ -2,6 +2,8 @@
 
 Este documento resume **todo el proceso real** que configuramos:
 
+[Video de la implementación](https://youtu.be/i2HwYrd1Wi4)  
+
 - Cómo la Raspberry recibe **Internet desde tu PC** por Ethernet  
 - Cómo la Raspberry crea un **Hotspot WiFi estable (AP)**  
 - Cómo conectar **ESP32 + Node-RED + Mosquitto MQTT**  

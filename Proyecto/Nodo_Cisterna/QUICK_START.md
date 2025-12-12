@@ -121,7 +121,10 @@ mosquitto_sub -h 192.168.1.100 -t "cistern_sensordata"
 # En terminal 2
 mosquitto_pub -h 192.168.1.100 -t "cistern_control" -m "ON"  # Encender
 mosquitto_pub -h 192.168.1.100 -t "cistern_control" -m "OFF" # Apagar
-mosquitto_pub -h 192.168.1.100 -t "cistern_control" -m "AUTO" # Automático
+mosquitto_pub -h 192.168.1.100 -t "cistern_control" -m "ON"  # Encender la bomba desde Node-RED
+mosquitto_pub -h 192.168.1.100 -t "cistern_control" -m "OFF" # Apagar la bomba desde Node-RED
+
+Nota: El firmware ya no soporta un botón físico local; el control se realiza mediante publicaciones MQTT en `cistern_control` (p.ej. desde Node‑RED). Para interfaces en el dashboard, usa `ui_button` en Node‑RED que publiquen `ON`/`OFF`.
 ```
 
 ---

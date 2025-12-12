@@ -151,10 +151,9 @@ publish_mqtt_off() {
 }
 
 publish_mqtt_auto() {
-    local HOST=${1:-"192.168.1.100"}
-    echo -e "${YELLOW}[Enviando comando AUTO al topic cistern_control...]${NC}"
-    mosquitto_pub -h $HOST -t "cistern_control" -m "AUTO"
-    echo -e "${GREEN}✓ Comando enviado${NC}"
+    # Mode AUTO removed: The firmware no longer supports 'AUTO' as a control command.
+    # Use Node-RED to implement automation by publishing ON/OFF as required.
+    echo -e "${YELLOW}[Modo AUTO NO soportado en firmware. Usa Node-RED para automatización (publicar ON/OFF en cistern_control).]${NC}"
 }
 
 test_mqtt_connection() {
@@ -226,7 +225,7 @@ show_mqtt_topics() {
     echo ""
     echo "SUSCRIPCIÓN (entrada de comandos):"
     echo "  Topic: cistern_control"
-    echo "  Comandos: ON, OFF, AUTO"
+    echo "  Comandos: ON, OFF (AUTO deprecated - use Node-RED)"
     echo "  QoS: 1"
 }
 
@@ -261,7 +260,7 @@ show_menu() {
     echo "  9) Suscribirse a datos"
     echo "  10) Encender bomba (ON)"
     echo "  11) Apagar bomba (OFF)"
-    echo "  12) Modo automático"
+    echo "  (Modo automático se implementa en Node-RED mediante la publicación de ON/OFF)"
     echo "  13) Probar conexión MQTT"
     echo ""
     echo "INFORMACIÓN:"
@@ -293,7 +292,7 @@ interactive_menu() {
             9) subscribe_mqtt_data ;;
             10) publish_mqtt_on ;;
             11) publish_mqtt_off ;;
-            12) publish_mqtt_auto ;;
+            # 12 (Modo automático) ya no es soportado por firmware; impleméntalo en Node-RED
             13) test_mqtt_connection ;;
             14) show_project_structure ;;
             15) show_gpio_usage ;;
@@ -330,7 +329,7 @@ else
         "mqtt-sub") subscribe_mqtt_data "$2" ;;
         "mqtt-on") publish_mqtt_on "$2" ;;
         "mqtt-off") publish_mqtt_off "$2" ;;
-        "mqtt-auto") publish_mqtt_auto "$2" ;;
+        # mqtt-auto removed; use Node-RED automation publishing ON/OFF
         "mqtt-test") test_mqtt_connection "$2" ;;
         "status") check_esp_idf ;;
         "structure") show_project_structure ;;
@@ -355,7 +354,7 @@ else
             echo "  mqtt-sub [host]    - Suscribirse a datos MQTT"
             echo "  mqtt-on [host]     - Encender bomba"
             echo "  mqtt-off [host]    - Apagar bomba"
-            echo "  mqtt-auto [host]   - Modo automático"
+            echo "  mqtt-auto [host]   - Modo automático (deprecated - use Node-RED automation)"
             echo "  mqtt-test [host]   - Probar MQTT"
             echo "  status             - Ver información ESP-IDF"
             echo "  structure          - Ver estructura proyecto"

@@ -13,6 +13,9 @@
  */
 esp_err_t wifi_init(const char *ssid, const char *password);
 
+// Debug helpers
+void wifi_scan_and_report(const char *expected_ssid);
+
 /**
  * @brief Obtiene el estado actual de la conexión Wi-Fi
  * 

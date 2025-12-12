@@ -98,8 +98,9 @@ idf.py -p /dev/ttyUSB0 monitor
 - Protección con semáforo mutex
 
 ✅ **Control**
-- **Automático**: encender/apagar bomba según nivel y calidad
-- **Manual**: comandos MQTT (ON/OFF/AUTO)
+- **Automático (Node-RED)**: La lógica de umbrales/automatización fue delegada a Node-RED; implemente reglas que publiquen `ON`/`OFF` en `cistern_control`.
+- **Manual**: Comandos MQTT (`ON` / `OFF`) publicados por Node-RED o desde la línea de comandos con `mosquitto_pub`.
+    - El botón físico local fue deshabilitado por diseño; no existe control físico directo en el ESP.
 - **Relé HW-307**: control de bomba sumergible
 
 ✅ **Tareas FreeRTOS**
@@ -128,7 +129,7 @@ Formato JSON:
 ### Suscripción (entrada de comandos)
 ```
 Topic: cistern_control
-Comandos: ON, OFF, AUTO
+Comandos: ON, OFF
 ```
 
 ---

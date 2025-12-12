@@ -104,9 +104,9 @@
 - [x] > 600 ppm → AGUA SUCIA (prevenir bombeo)
 
 ### Control de Bomba
-- [x] Automático: bajo + aceptable → ENCENDER
-- [x] Automático: alto O sucia → APAGAR
-- [x] Manual: comandos MQTT "ON", "OFF", "AUTO"
+- [x] Automático (migrado a Node-RED): reglas Node-RED publican `ON`/`OFF` según umbrales
+- [x] Manual: comandos MQTT "ON" / "OFF" ejecutados por Node-RED o CLI
+	- [x] El botón físico en ESP fue deshabilitado; el control por hardware no está soportado en esta versión
 - [x] Umbrales configurables
 
 ---

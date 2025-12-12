@@ -102,9 +102,9 @@ esp_err_t mqtt_disconnect(void *client)
  * @brief Publica un mensaje en un topic MQTT
  */
 int mqtt_publish(void *client, const char *topic,
-                 const char *data, int data_len, int qos)
+                 const char *data, int data_len, int qos, bool retain)
 {
-    return esp_mqtt_client_publish(client, topic, data, data_len, qos, false);
+    return esp_mqtt_client_publish(client, topic, data, data_len, qos, retain);
 }
 /**
  * @brief Se suscribe a un topic MQTT
