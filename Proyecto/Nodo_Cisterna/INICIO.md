@@ -100,6 +100,7 @@ idf.py -p /dev/ttyUSB0 monitor
 ✅ **Control**
 - **Automático**: encender/apagar bomba según nivel y calidad
 - **Manual**: comandos MQTT (ON/OFF/AUTO)
+ - **Manual**: comandos MQTT (ON/OFF). El control manual físico se realiza con un botón en el ESP (pulsar=ON, soltar=OFF)
 - **Relé HW-307**: control de bomba sumergible
 
 ✅ **Tareas FreeRTOS**
@@ -128,7 +129,7 @@ Formato JSON:
 ### Suscripción (entrada de comandos)
 ```
 Topic: cistern_control
-Comandos: ON, OFF, AUTO
+Comandos: ON, OFF
 ```
 
 ---

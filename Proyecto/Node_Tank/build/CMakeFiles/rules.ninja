@@ -579,7 +579,7 @@ rule C_STATIC_LIBRARY_LINKER____idf_newlib_
 rule CXX_COMPILER____idf_cxx_
   depfile = $DEP_FILE
   deps = gcc
-  command = /home/tatan/.espressif/tools/riscv32-esp-elf/esp-12.2.0_20230208/riscv32-esp-elf/bin/riscv32-esp-elf-g++ $DEFINES $INCLUDES $FLAGS -MD -MT $out -MF $DEP_FILE -o $out -c $in
+  command = /home/tatan/.espressif/tools/riscv32-esp-elf/esp-12.2.0_20230208/riscv32-esp-elf/bin/riscv32-esp-elf-g++ $DEFINES $INCLUDES $FLAGS -o $out -c $in
   description = Building CXX object $out
 
 
@@ -674,7 +674,7 @@ rule C_STATIC_LIBRARY_LINKER____idf_esp_event_
 rule CXX_COMPILER____idf_nvs_flash_
   depfile = $DEP_FILE
   deps = gcc
-  command = /home/tatan/.espressif/tools/riscv32-esp-elf/esp-12.2.0_20230208/riscv32-esp-elf/bin/riscv32-esp-elf-g++ $DEFINES $INCLUDES $FLAGS -MD -MT $out -MF $DEP_FILE -o $out -c $in
+  command = /home/tatan/.espressif/tools/riscv32-esp-elf/esp-12.2.0_20230208/riscv32-esp-elf/bin/riscv32-esp-elf-g++ $DEFINES $INCLUDES $FLAGS -o $out -c $in
   description = Building CXX object $out
 
 
@@ -1168,7 +1168,7 @@ rule C_STATIC_LIBRARY_LINKER____idf_espcoredump_
 rule CXX_COMPILER____idf_wear_levelling_
   depfile = $DEP_FILE
   deps = gcc
-  command = /home/tatan/.espressif/tools/riscv32-esp-elf/esp-12.2.0_20230208/riscv32-esp-elf/bin/riscv32-esp-elf-g++ $DEFINES $INCLUDES $FLAGS -MD -MT $out -MF $DEP_FILE -o $out -c $in
+  command = /home/tatan/.espressif/tools/riscv32-esp-elf/esp-12.2.0_20230208/riscv32-esp-elf/bin/riscv32-esp-elf-g++ $DEFINES $INCLUDES $FLAGS -o $out -c $in
   description = Building CXX object $out
 
 

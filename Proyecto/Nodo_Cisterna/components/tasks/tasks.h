@@ -23,6 +23,8 @@ typedef struct {
     int ultrasonic_echo_pin;        // Pin GPIO del sensor ultrasónico ECHO
     int tds_adc_pin;                // Pin ADC del sensor TDS
     int pump_relay_pin;             // Pin GPIO del relé que controla la bomba
+    /* pump_button_pin removed: button is disabled in firmware; control via MQTT only */
+    /* Note: automatic thresholds removed; control is performed externally via MQTT ON/OFF */
 } task_config_t;
 
 /**
@@ -63,5 +65,12 @@ esp_err_t tasks_set_pump_relay(bool enable);
  * @return bool true si está encendido, false si está apagado
  */
 bool tasks_get_pump_relay_state(void);
+
+/* Button-related API removed: button is disabled and firmware control is MQTT-only */
+typedef void (*pump_state_cb_t)(bool state);
+/**
+ * @brief Registrar una función callback que será llamada cuando cambie el estado del relé
+ */
+void tasks_register_pump_state_cb(pump_state_cb_t cb);
 
 #endif // TASKS_H

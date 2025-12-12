@@ -1,7 +1,7 @@
 {
     "version":            "1",
     "project_name":       "Node_Tank",
-    "project_version":    "175aad3-dirty",
+    "project_version":    "0d2bd82-dirty",
     "project_path":       "/mnt/c/Users/tatan/Documentos/UNAL/8_License_Plate/Linux/4201152-Sist-linux-embebidos/Proyecto/Node_Tank",
     "idf_path":           "/home/tatan/esp/esp-idf",
     "build_dir":          "/mnt/c/Users/tatan/Documentos/UNAL/8_License_Plate/Linux/4201152-Sist-linux-embebidos/Proyecto/Node_Tank/build",

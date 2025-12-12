@@ -5,6 +5,7 @@
 #include "driver/gpio.h"
 #include "esp_log.h"
 #include "esp_system.h"
+#include "esp_err.h"
 #include "nvs_flash.h"
 #include "freertos/FreeRTOS.h"
 #include "freertos/task.h"
@@ -25,12 +26,15 @@
 
 #define WIFI_SSID       "RPi-Hotspot"        // Cambiar por el SSID de tu red Wi-Fi RPi-Hotspot
 #define WIFI_PASSWORD   "12345678"    // Cambiar por la contraseña de tu red Wi-Fi
-#define MQTT_BROKER_URI "mqtt://10.42.0.111:1883"  // Cambiar según broker 10.162.31.132  10.42.0.1     10.42.0.111
+#define MQTT_BROKER_URI "mqtt://10.42.0.1:1883"  // Cambiar según broker 10.162.31.132  10.42.0.1     10.42.0.111
 static const char *TAG = "CISTERNA_MAIN";
 
 // Variables globales para configuración
 static void *mqtt_client = NULL;
-static bool pump_manual_override = false;
+// Mode: central control via Node-RED by default
+// Control modes
+// Only MQTT-based control is used now; node-RED sends ON/OFF to control pump
+static bool pump_manual_override = false;  // retained for compatibility (unused)
 
 /**
  * @brief Callback para eventos MQTT
@@ -39,7 +43,7 @@ static bool pump_manual_override = false;
  * Particularmente, procesa comandos de control de bomba desde el topic "cistern_control"
  * 
  * Tópicos esperados:
- * - Recibir: cistern_control → mensajes "ON"/"OFF"/"AUTO" para control de bomba
+ * - Recibir: cistern_control → mensajes "ON"/"OFF" para control de bomba
  */
 static void mqtt_event_handler(void *handler_args, esp_event_base_t base, 
                                int32_t event_id, void *event_data)
@@ -47,28 +51,55 @@ static void mqtt_event_handler(void *handler_args, esp_event_base_t base,
     esp_mqtt_event_handle_t event = (esp_mqtt_event_handle_t)event_data;
     
     if (event_id == MQTT_EVENT_DATA) {
+        // Mostrar topic y payload para diagnostico
+        ESP_LOGI(TAG, "MQTT: topic=%.*s payload=%.*s", event->topic_len, event->topic,
+                 event->data_len, event->data);
         // Procesar mensajes recibidos
-        if (strncmp(event->topic, "cistern_control", event->topic_len) == 0) {
-            // Procesar comando de control de bomba
+        const char topic_control[] = "cistern_control";
+        const char topic_pump_cmd[] = "cistern/pump_cmd"; // alias used by Node-RED flow
+        bool is_control = false;
+
+        if (event->topic_len == (int)sizeof(topic_control) - 1 &&
+            memcmp(event->topic, topic_control, event->topic_len) == 0) {
+            is_control = true;
+        } else if (event->topic_len == (int)sizeof(topic_pump_cmd) - 1 &&
+                   memcmp(event->topic, topic_pump_cmd, event->topic_len) == 0) {
+            is_control = true;
+        }
+
+        if (is_control) {
+            // Procesar comando de control de bomba (ON/OFF variants)
             char payload[32] = {0};
             int len = (event->data_len < (int)sizeof(payload) - 1) ? event->data_len : (int)sizeof(payload) - 1;
             strncpy(payload, event->data, len);
             payload[len] = '\0';
-            
+
             ESP_LOGI(TAG, "-> Comando de bomba recibido: '%s'", payload);
-            
-            // Procesar comandos desde Node-RED
-            if (strcasecmp(payload, "ON") == 0) {
-                tasks_set_pump_relay(true);
-                pump_manual_override = true;
+
+            if (strcasecmp(payload, "ON") == 0 || strcasecmp(payload, "ENCENDER") == 0 || strcasecmp(payload, "1") == 0 || strcasecmp(payload, "TRUE") == 0) {
+                esp_err_t rc = tasks_set_pump_relay(true);
+                if (rc == ESP_OK) {
+                    ESP_LOGI(TAG, "tasks_set_pump_relay(true) -> ESP_OK");
+                } else {
+                    ESP_LOGW(TAG, "tasks_set_pump_relay(true) -> %s", esp_err_to_name(rc));
+                }
                 ESP_LOGI(TAG, "OK Bomba encendida (desde Node-RED)");
-            } else if (strcasecmp(payload, "OFF") == 0) {
-                tasks_set_pump_relay(false);
-                pump_manual_override = true;
+            } else if (strcasecmp(payload, "OFF") == 0 || strcasecmp(payload, "APAGAR") == 0 || strcasecmp(payload, "0") == 0 || strcasecmp(payload, "FALSE") == 0) {
+                esp_err_t rc = tasks_set_pump_relay(false);
+                if (rc == ESP_OK) {
+                    ESP_LOGI(TAG, "tasks_set_pump_relay(false) -> ESP_OK");
+                } else {
+                    ESP_LOGW(TAG, "tasks_set_pump_relay(false) -> %s", esp_err_to_name(rc));
+                }
                 ESP_LOGI(TAG, "OK Bomba apagada (desde Node-RED)");
-            } else if (strcasecmp(payload, "AUTO") == 0) {
-                pump_manual_override = false;
-                ESP_LOGI(TAG, "OK Control automatico de bomba activado");
+            } else {
+                ESP_LOGW(TAG, "Comando desconocido en cistern_control: '%s' (aceptados: ON/OFF)", payload);
+            }
+
+            // Enviar confirmación del estado de la bomba por MQTT
+            if (mqtt_is_connected(mqtt_client)) {
+                const char *pump_state_str = tasks_get_pump_relay_state() ? "ON" : "OFF";
+                mqtt_publish(mqtt_client, "cistern/pump_state", pump_state_str, strlen(pump_state_str), 1, true);
             }
         }
     }
@@ -80,12 +111,10 @@ static void mqtt_event_handler(void *handler_args, esp_event_base_t base,
  * Esta tarea:
  * 1. Lee los sensores (nivel de agua y TDS) cada 1 segundo
  * 2. Clasifica la calidad del agua
- * 3. Implementa lógica automática de control de bomba
- * 4. Publica los datos en formato JSON al broker MQTT
+ * 3. Publica los datos en tópicos MQTT
  * 
- * Reglas de control automático de bomba:
- * - Si nivel bajo Y agua aceptable (≤600 ppm) → encender
- * - Si nivel alto O agua sucia (>600 ppm) → apagar
+ * Nota: El control de la bomba se realiza únicamente mediante comandos
+ * MQTT recibidos en el tópico "cistern_control" (ON/OFF)
  */
 static void sensor_read_and_publish_task(void *pvParameters)
 {
@@ -106,22 +135,6 @@ static void sensor_read_and_publish_task(void *pvParameters)
         esp_err_t err = tasks_read_sensor_data(&sensor_data, pdMS_TO_TICKS(500));
         
         if (err == ESP_OK) {
-            // Lógica de control automático de bomba
-            if (!pump_manual_override) {
-                // Umbral de nivel bajo: 20cm, nivel alto: 180cm
-                bool level_low = (sensor_data.water_level < 20.0f);
-                bool level_high = (sensor_data.water_level > 180.0f);
-                bool water_acceptable = (sensor_data.water_state != WATER_STATE_DIRTY);
-                
-                if (level_low && water_acceptable) {
-                    // Encender bomba: nivel bajo y agua aceptable
-                    tasks_set_pump_relay(true);
-                } else if (level_high || !water_acceptable) {
-                    // Apagar bomba: nivel alto o agua sucia
-                    tasks_set_pump_relay(false);
-                }
-            }
-            
             // Preparar datos de sensores
             const char *water_state_str[] = {"LIMPIA", "MEDIA", "SUCIA"};
             const char *pump_state_str = tasks_get_pump_relay_state() ? "ON" : "OFF";
@@ -130,21 +143,23 @@ static void sensor_read_and_publish_task(void *pvParameters)
             if (mqtt_is_connected(mqtt_client)) {
                 // 1. Publicar nivel de agua (en cm)
                 snprintf(json_payload, json_buf_sz, "%.2f", sensor_data.water_level);
-                mqtt_publish(mqtt_client, "cistern/water_level", json_payload, strlen(json_payload), 1);
+                mqtt_publish(mqtt_client, "cistern/water_level", json_payload, strlen(json_payload), 1, false);
                 
                 // 2. Publicar TDS (en ppm)
                 snprintf(json_payload, json_buf_sz, "%.1f", sensor_data.tds_value);
-                mqtt_publish(mqtt_client, "cistern/tds_value", json_payload, strlen(json_payload), 1);
+                mqtt_publish(mqtt_client, "cistern/tds_value", json_payload, strlen(json_payload), 1, false);
                 
                 // 3. Publicar estado del agua (LIMPIA/MEDIA/SUCIA)
                 snprintf(json_payload, json_buf_sz, "%s", water_state_str[sensor_data.water_state]);
-                mqtt_publish(mqtt_client, "cistern/water_state", json_payload, strlen(json_payload), 1);
+                mqtt_publish(mqtt_client, "cistern/water_state", json_payload, strlen(json_payload), 1, false);
                 
                 // 4. Publicar estado de la bomba (ON/OFF)
                 snprintf(json_payload, json_buf_sz, "%s", pump_state_str);
-                mqtt_publish(mqtt_client, "cistern/pump_state", json_payload, strlen(json_payload), 1);
-                
-                ESP_LOGD(TAG, "-> Datos publicados en topicos MQTT");
+                mqtt_publish(mqtt_client, "cistern/pump_state", json_payload, strlen(json_payload), 1, true);
+
+                    ESP_LOGD(TAG, "-> Datos publicados en topicos MQTT");
+
+                    // Control automático interno removido: Node-RED controla la bomba mediante ON/OFF
             } else {
                 ESP_LOGW(TAG, "X MQTT desconectado, datos no publicados");
             }
@@ -311,7 +326,7 @@ void app_main(void)
     }
     
     // Esperar a que se conecte a Wi-Fi (máximo 10 segundos)
-    uint32_t wifi_timeout = 10000;
+    uint32_t wifi_timeout = 30000; // 30 seconds timeout for Wi-Fi to obtain IP
     uint32_t start_time = esp_log_timestamp();
     while (!wifi_is_connected() && (esp_log_timestamp() - start_time) < wifi_timeout) {
         vTaskDelay(pdMS_TO_TICKS(100));
@@ -341,16 +356,21 @@ void app_main(void)
         // Suscribirse al topico de control de bomba (sera procesado en mqtt_event_handler)
         mqtt_subscribe(mqtt_client, "cistern_control", 1);
         ESP_LOGI(TAG, "-> Suscrito a topico 'cistern_control' para recibir comandos desde Node-RED");
+        // Publish initial retained state so Node-RED knows current state and mode
+        const char *initial_pump_state = tasks_get_pump_relay_state() ? "ON" : "OFF";
+        mqtt_publish(mqtt_client, "cistern/pump_state", initial_pump_state, strlen(initial_pump_state), 1, true);
+        // Mode topic removed; only pump_state retained publish is provided
     }
     
     // 4. Inicializar sensores y tareas
     ESP_LOGI(TAG, "→ Inicializando sensores y tareas FreeRTOS...");
     task_config_t task_cfg = {
         .sampling_interval_ms = 1000,        // 1 segundo
-        .ultrasonic_trig_pin = GPIO_NUM_5,  // Pin TRIG del sensor ultrasónico
-        .ultrasonic_echo_pin = GPIO_NUM_18,   // Pin ECHO del sensor ultrasónico
+        .ultrasonic_trig_pin = GPIO_NUM_10,  // Pin TRIG del sensor ultrasónico
+        .ultrasonic_echo_pin = GPIO_NUM_11,   // Pin ECHO del sensor ultrasónico
         .tds_adc_pin = 0,                    // Canal ADC 0 del sensor TDS
-        .pump_relay_pin = GPIO_NUM_8         // Pin del relé de la bomba
+        .pump_relay_pin = GPIO_NUM_1         // Pin del relé de la bomba
+        // (botón deshabilitado) 
     };
     
     esp_err_t tasks_err = tasks_init(&task_cfg);
@@ -368,8 +388,15 @@ void app_main(void)
                 3,                         // Prioridad (más alta)
                 NULL);                     // Handle
 
+    // Registrar callback para publicar el estado de la bomba cuando cambie
+    extern void pump_state_change_cb(bool state);
+    tasks_register_pump_state_cb(pump_state_change_cb);
+
     // Start minimal UART command task (reads lines and triggers sensor commands)
     xTaskCreate(uart_command_task, "uart_cmd", 3072, NULL, 2, NULL);
+
+    // Start console REPL task (optional interactive console)
+    xTaskCreate(console_repl_task, "console", 4096, NULL, 1, NULL);
     
     ESP_LOGI(TAG, "\n✓ INICIALIZACIÓN COMPLETADA");
     ESP_LOGI(TAG, "El sistema está en funcionamiento...\n");
@@ -394,3 +421,17 @@ void app_main(void)
         ESP_LOGD(TAG, "  Memoria: Libre=%" PRIu32 " B | Mínima=%" PRIu32 " B", free_heap, min_free_heap);
     }
 }
+
+/**
+ * @brief Callback llamado desde el componente de tareas cuando cambia el estado del relé
+ */
+void pump_state_change_cb(bool state)
+{
+    ESP_LOGI(TAG, "Callback: pump_state changed -> %s", state ? "ON" : "OFF");
+    if (mqtt_is_connected(mqtt_client)) {
+        const char *pump_state_str = state ? "ON" : "OFF";
+        mqtt_publish(mqtt_client, "cistern/pump_state", pump_state_str, strlen(pump_state_str), 1, true);
+    }
+}
+
+/* Button event callback removed (button disabled) */

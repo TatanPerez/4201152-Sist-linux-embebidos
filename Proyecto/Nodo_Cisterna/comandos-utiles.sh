@@ -261,7 +261,7 @@ show_menu() {
     echo "  9) Suscribirse a datos"
     echo "  10) Encender bomba (ON)"
     echo "  11) Apagar bomba (OFF)"
-    echo "  12) Modo automático"
+    echo "  (Modo automático se implementa en Node-RED mediante la publicación de ON/OFF)"
     echo "  13) Probar conexión MQTT"
     echo ""
     echo "INFORMACIÓN:"
@@ -293,7 +293,7 @@ interactive_menu() {
             9) subscribe_mqtt_data ;;
             10) publish_mqtt_on ;;
             11) publish_mqtt_off ;;
-            12) publish_mqtt_auto ;;
+            # 12 (Modo automático) ya no es soportado por firmware; impleméntalo en Node-RED
             13) test_mqtt_connection ;;
             14) show_project_structure ;;
             15) show_gpio_usage ;;
@@ -330,7 +330,7 @@ else
         "mqtt-sub") subscribe_mqtt_data "$2" ;;
         "mqtt-on") publish_mqtt_on "$2" ;;
         "mqtt-off") publish_mqtt_off "$2" ;;
-        "mqtt-auto") publish_mqtt_auto "$2" ;;
+        # mqtt-auto removed; use Node-RED automation publishing ON/OFF
         "mqtt-test") test_mqtt_connection "$2" ;;
         "status") check_esp_idf ;;
         "structure") show_project_structure ;;

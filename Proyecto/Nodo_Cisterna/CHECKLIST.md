@@ -107,6 +107,7 @@
 - [x] Automático: bajo + aceptable → ENCENDER
 - [x] Automático: alto O sucia → APAGAR
 - [x] Manual: comandos MQTT "ON", "OFF", "AUTO"
+ - [x] Manual: comandos MQTT "ON", "OFF" (control físico: botón en ESP)
 - [x] Umbrales configurables
 
 ---

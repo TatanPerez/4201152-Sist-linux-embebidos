@@ -132,7 +132,7 @@ GND      → Tierra común
 
 **Suscripción:**
 - Topic: `cistern_control`
-- Comandos: "ON", "OFF", "AUTO"
+- Comandos: "ON", "OFF"
 - QoS: 1
 
 ---
@@ -289,7 +289,7 @@ mosquitto_sub -h 192.168.1.100 -t "cistern_sensordata"
        ▼
 ┌─────────────────────────────────────┐
 │ Recibir Comandos MQTT              │
-│ (cistern_control: ON/OFF/AUTO)     │
+│ (cistern_control: ON/OFF)          │
 └─────────────────────────────────────┘
 ```
 

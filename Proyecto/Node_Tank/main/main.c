@@ -18,9 +18,9 @@
 static const char *TAG = "TANK_NODE";
 
 // Valores por defecto (modificar o usar menuconfig para parametrizar)
-#define DEFAULT_WIFI_SSID "Casa de Tatan2"
-#define DEFAULT_WIFI_PASS "12312312345"
-#define DEFAULT_MQTT_BROKER_URI "mqtt://192.168.211.28:1883"
+#define DEFAULT_WIFI_SSID "Casa de Tatan"//RPi-Hotspot" RPi-Hotspot
+#define DEFAULT_WIFI_PASS "123123123"
+#define DEFAULT_MQTT_BROKER_URI "mqtt://10.162.31.132:1883"  // 10.162.31.132        10.42.0.111
 
 void app_main(void)
 {

@@ -23,7 +23,9 @@ Para conectar con **Node-RED en Raspberry Pi**:
 2. **Importa:** `NODERED_FLOW_EXAMPLE.json` (flujo de ejemplo en Node-RED)
 3. **Tópicos MQTT:**
    - **Publica:** `cistern/water_level`, `cistern/tds_value`, `cistern/water_state`, `cistern/pump_state`
-   - **Suscribe:** `cistern_control` (recibe ON/OFF/AUTO)
+  - **Suscribe:** `cistern_control` (recibe ON/OFF). Node‑RED publica `ON`/`OFF` para encender/apagar la bomba; el control manual por hardware se realiza con un botón conectado al ESP (pulsar=ON, soltar=OFF).
+   - **Suscribe:** `cistern_control` (recibe ON/OFF). Por diseño el firmware ya no realiza control automático por umbrales: la automatización MUST residir en Node‑RED. El firmware **aplica inmediatamente** cualquier mensaje `ON`/`OFF` recibido en `cistern_control` (o en el alias `cistern/pump_cmd`) y publica el estado actual en `cistern/pump_state` (retained = true).
+    Nota: el botón físico se ha **deshabilitado** y todo control debe realizarse desde Node‑RED vía MQTT.
 
 ---
 
@@ -129,7 +131,7 @@ Archivos y utilidades fuera del árbol de código fuente:
 │                          (publica cada 1s)   (suscribir)        │
 │                              ↓                    ↑              │
 │                    cistern/water_level      cistern_control      │
-│                    cistern/tds_value        (ON/OFF/AUTO)        │
+│                    cistern/tds_value        (ON/OFF)             │
 │                    cistern/water_state                           │
 │                    cistern/pump_state                            │
 │                                                                 │
@@ -163,23 +165,20 @@ Archivos y utilidades fuera del árbol de código fuente:
 1. Leer sensor ultrasónico → nivel de agua
 2. Leer sensor TDS → calidad del agua
 3. Clasificar calidad (limpia/media/sucia)
-4. Aplicar lógica automática de bomba (si no está en override manual)
+4. Aplicar lógica automática de bomba (delegada a Node-RED: publicar `ON`/`OFF` según reglas)
 5. Publicar datos en topic "cistern_sensordata" (JSON)
 6. Esperar siguiente ciclo
 ```
 
 ### 3. Lógica de Control de Bomba
 ```
-AUTOMÁTICO:
-  Si (nivel_bajo < 20cm) AND (agua ≤ 600 ppm)
-    → Encender bomba
-  Si (nivel_alto > 180cm) OR (agua > 600 ppm)
-    → Apagar bomba
-
-MANUAL (vía MQTT "cistern_control"):
+CONTROL VÍA MQTT (desde Node-RED):
   "ON"   → Encender bomba
   "OFF"  → Apagar bomba
-  "AUTO" → Volver a automático
+  Nota: El firmware acepta `ON`/`OFF`. Para automatización, implementa en Node-RED la lógica que publique `ON`/`OFF` en `cistern_control` según umbrales.
+
+Nota: La lógica de control está completamente implementada en Node-RED.
+      El ESP32 solo ejecuta los comandos recibidos en "cistern_control".
 ```
 
 ---
@@ -213,9 +212,13 @@ Suscribirse a:
 **Topic:** `cistern_control`
 
 **Valores aceptados:**
-- `ON` - Encender bomba manualmente
-- `OFF` - Apagar bomba manualmente
-- `AUTO` - Activar control automático
+  - `ON` - Encender bomba manualmente (Node-RED)
+  - `OFF` - Apagar bomba manualmente (Node-RED)
+  - Nota: El control automático debe implementarlo Node-RED publicando `ON`/`OFF` según reglas (nivel/tds)
+
+  Hardware manual button:
+  - El firmware soporta un botón físico conectado al pin por defecto **GPIO9** (configurable en `main.c` o en `task_config_t`).
+  - Configuración: botón activo‑bajo (usar una resistencia pull‑up interna o externa). Pulsar → bomba ON; soltar → bomba OFF.
 
 **Ejemplo de envío desde Node-RED:**
 ```javascript
@@ -225,8 +228,7 @@ publish("cistern_control", "ON", QoS: 1)
 // Enviar comando OFF
 publish("cistern_control", "OFF", QoS: 1)
 
-// Volver a automático
-publish("cistern_control", "AUTO", QoS: 1)
+// Para automatización, publica ON/OFF según reglas en Node-RED
 ```
 
 ### Publicación JSON Completo (compatibilidad)
@@ -250,7 +252,7 @@ publish("cistern_control", "AUTO", QoS: 1)
 **Valores aceptados:**
 - `ON` - Encender bomba manualmente
 - `OFF` - Apagar bomba manualmente
-- `AUTO` - Activar control automático
+- Nota: El control automático debe implementarlo Node-RED publicando `ON`/`OFF` según reglas (nivel/tds)
 
 ---
 
@@ -425,12 +427,12 @@ Desde Node-RED en `http://10.42.0.1:1880` (o `http://192.168.60.10:1880` desde P
 # Enviar comando por MQTT (desde línea de comandos para pruebas)
 mosquitto_pub -h 10.42.0.111 -t "cistern_control" -m "ON"
 mosquitto_pub -h 10.42.0.111 -t "cistern_control" -m "OFF"
-mosquitto_pub -h 10.42.0.111 -t "cistern_control" -m "AUTO"
+// Nota: Para automatización, haz que Node-RED publique `ON`/`OFF` según reglas (nivel/tds)
 ```
 
 **Desde Node-RED:**
 1. Crear un nodo **MQTT in** suscritor a `cistern/water_level`, `cistern/tds_value`, `cistern/water_state`, `cistern/pump_state`
-2. Crear un nodo **MQTT out** publicador a `cistern_control` con payload: `ON`, `OFF`, o `AUTO`
+2. Crear un nodo **MQTT out** publicador a `cistern_control` con payload: `ON` o `OFF` (Node-RED implementa automatización si es necesario)
 3. Conectar botones o controles de interfaz para enviar comandos
 
 ### 6. Calibración TDS (UART)

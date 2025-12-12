@@ -121,7 +121,10 @@ mosquitto_sub -h 192.168.1.100 -t "cistern_sensordata"
 # En terminal 2
 mosquitto_pub -h 192.168.1.100 -t "cistern_control" -m "ON"  # Encender
 mosquitto_pub -h 192.168.1.100 -t "cistern_control" -m "OFF" # Apagar
-mosquitto_pub -h 192.168.1.100 -t "cistern_control" -m "AUTO" # Automático
+mosquitto_pub -h 192.168.1.100 -t "cistern_control" -m "ON"  # Encender la bomba desde Node-RED
+mosquitto_pub -h 192.168.1.100 -t "cistern_control" -m "OFF" # Apagar la bomba desde Node-RED
+
+Nota: El control manual tradicional (MANUAL) se sustituye por un botón físico conectado al ESP32: al pulsar, la bomba se enciende; al soltar, se apaga.
 ```
 
 ---

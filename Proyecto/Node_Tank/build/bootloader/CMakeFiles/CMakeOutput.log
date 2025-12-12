@@ -35,7 +35,7 @@ warranty; not even for MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
 Detecting C compiler ABI info compiled with the following output:
 Change Dir: /mnt/c/Users/tatan/Documentos/UNAL/8_License_Plate/Linux/4201152-Sist-linux-embebidos/Proyecto/Node_Tank/build/bootloader/CMakeFiles/CMakeTmp
 
-Run Build Command(s):/home/tatan/.espressif/tools/ninja/1.10.2/ninja cmTC_158b7 && [1/2] Building C object CMakeFiles/cmTC_158b7.dir/CMakeCCompilerABI.c.obj
+Run Build Command(s):/home/tatan/.espressif/tools/ninja/1.10.2/ninja cmTC_b2ac6 && [1/2] Building C object CMakeFiles/cmTC_b2ac6.dir/CMakeCCompilerABI.c.obj
 Using built-in specs.
 COLLECT_GCC=/home/tatan/.espressif/tools/riscv32-esp-elf/esp-12.2.0_20230208/riscv32-esp-elf/bin/riscv32-esp-elf-gcc
 Target: riscv32-esp-elf
@@ -43,8 +43,8 @@ Configured with: /builds/idf/crosstool-NG/.build/riscv32-esp-elf/src/gcc/configu
 Thread model: posix
 Supported LTO compression algorithms: zlib
 gcc version 12.2.0 (crosstool-NG esp-12.2.0_20230208) 
-COLLECT_GCC_OPTIONS='-march=rv32imac_zicsr_zifencei' '-v' '-o' 'CMakeFiles/cmTC_158b7.dir/CMakeCCompilerABI.c.obj' '-c' '-mabi=ilp32' '-misa-spec=20191213' '-march=rv32imac_zicsr_zifencei' '-dumpdir' 'CMakeFiles/cmTC_158b7.dir/'
- /home/tatan/.espressif/tools/riscv32-esp-elf/esp-12.2.0_20230208/riscv32-esp-elf/bin/../libexec/gcc/riscv32-esp-elf/12.2.0/cc1 -quiet -v -imultilib rv32imac_zicsr_zifencei/ilp32 -iprefix /home/tatan/.espressif/tools/riscv32-esp-elf/esp-12.2.0_20230208/riscv32-esp-elf/bin/../lib/gcc/riscv32-esp-elf/12.2.0/ /home/tatan/.espressif/tools/cmake/3.24.0/share/cmake-3.24/Modules/CMakeCCompilerABI.c -quiet -dumpdir CMakeFiles/cmTC_158b7.dir/ -dumpbase CMakeCCompilerABI.c.c -dumpbase-ext .c -march=rv32imac_zicsr_zifencei -mabi=ilp32 -misa-spec=20191213 -march=rv32imac_zicsr_zifencei -version -o /tmp/cc7Z0Wnr.s
+COLLECT_GCC_OPTIONS='-march=rv32imac_zicsr_zifencei' '-v' '-o' 'CMakeFiles/cmTC_b2ac6.dir/CMakeCCompilerABI.c.obj' '-c' '-mabi=ilp32' '-misa-spec=20191213' '-march=rv32imac_zicsr_zifencei' '-dumpdir' 'CMakeFiles/cmTC_b2ac6.dir/'
+ /home/tatan/.espressif/tools/riscv32-esp-elf/esp-12.2.0_20230208/riscv32-esp-elf/bin/../libexec/gcc/riscv32-esp-elf/12.2.0/cc1 -quiet -v -imultilib rv32imac_zicsr_zifencei/ilp32 -iprefix /home/tatan/.espressif/tools/riscv32-esp-elf/esp-12.2.0_20230208/riscv32-esp-elf/bin/../lib/gcc/riscv32-esp-elf/12.2.0/ /home/tatan/.espressif/tools/cmake/3.24.0/share/cmake-3.24/Modules/CMakeCCompilerABI.c -quiet -dumpdir CMakeFiles/cmTC_b2ac6.dir/ -dumpbase CMakeCCompilerABI.c.c -dumpbase-ext .c -march=rv32imac_zicsr_zifencei -mabi=ilp32 -misa-spec=20191213 -march=rv32imac_zicsr_zifencei -version -o /tmp/cczDnidi.s
 GNU C17 (crosstool-NG esp-12.2.0_20230208) version 12.2.0 (riscv32-esp-elf)
 	compiled by GNU C version 4.9.2, GMP version 6.2.1, MPFR version 4.1.0, MPC version 1.2.1, isl version isl-0.24-GMP
 
@@ -65,13 +65,13 @@ GNU C17 (crosstool-NG esp-12.2.0_20230208) version 12.2.0 (riscv32-esp-elf)
 
 GGC heuristics: --param ggc-min-expand=100 --param ggc-min-heapsize=131072
 Compiler executable checksum: 7a2054f6a25a53bafddb8ada7f059d53
-COLLECT_GCC_OPTIONS='-march=rv32imac_zicsr_zifencei' '-v' '-o' 'CMakeFiles/cmTC_158b7.dir/CMakeCCompilerABI.c.obj' '-c' '-mabi=ilp32' '-misa-spec=20191213' '-march=rv32imac_zicsr_zifencei' '-dumpdir' 'CMakeFiles/cmTC_158b7.dir/'
- /home/tatan/.espressif/tools/riscv32-esp-elf/esp-12.2.0_20230208/riscv32-esp-elf/bin/../lib/gcc/riscv32-esp-elf/12.2.0/../../../../riscv32-esp-elf/bin/as -v --traditional-format -march=rv32imac_zicsr_zifencei -march=rv32imac_zicsr_zifencei -mabi=ilp32 -misa-spec=20191213 -o CMakeFiles/cmTC_158b7.dir/CMakeCCompilerABI.c.obj /tmp/cc7Z0Wnr.s
+COLLECT_GCC_OPTIONS='-march=rv32imac_zicsr_zifencei' '-v' '-o' 'CMakeFiles/cmTC_b2ac6.dir/CMakeCCompilerABI.c.obj' '-c' '-mabi=ilp32' '-misa-spec=20191213' '-march=rv32imac_zicsr_zifencei' '-dumpdir' 'CMakeFiles/cmTC_b2ac6.dir/'
+ /home/tatan/.espressif/tools/riscv32-esp-elf/esp-12.2.0_20230208/riscv32-esp-elf/bin/../lib/gcc/riscv32-esp-elf/12.2.0/../../../../riscv32-esp-elf/bin/as -v --traditional-format -march=rv32imac_zicsr_zifencei -march=rv32imac_zicsr_zifencei -mabi=ilp32 -misa-spec=20191213 -o CMakeFiles/cmTC_b2ac6.dir/CMakeCCompilerABI.c.obj /tmp/cczDnidi.s
 GNU assembler version 2.39.0 (riscv32-esp-elf) using BFD version (crosstool-NG esp-12.2.0_20230208) 2.39.0.20220915
 COMPILER_PATH=/home/tatan/.espressif/tools/riscv32-esp-elf/esp-12.2.0_20230208/riscv32-esp-elf/bin/../libexec/gcc/riscv32-esp-elf/12.2.0/:/home/tatan/.espressif/tools/riscv32-esp-elf/esp-12.2.0_20230208/riscv32-esp-elf/bin/../libexec/gcc/:/home/tatan/.espressif/tools/riscv32-esp-elf/esp-12.2.0_20230208/riscv32-esp-elf/bin/../lib/gcc/riscv32-esp-elf/12.2.0/../../../../riscv32-esp-elf/bin/
 LIBRARY_PATH=/home/tatan/.espressif/tools/riscv32-esp-elf/esp-12.2.0_20230208/riscv32-esp-elf/bin/../lib/gcc/riscv32-esp-elf/12.2.0/rv32imac_zicsr_zifencei/ilp32/:/home/tatan/.espressif/tools/riscv32-esp-elf/esp-12.2.0_20230208/riscv32-esp-elf/bin/../lib/gcc/riscv32-esp-elf/12.2.0/../../../../riscv32-esp-elf/lib/rv32imac_zicsr_zifencei/ilp32/:/home/tatan/.espressif/tools/riscv32-esp-elf/esp-12.2.0_20230208/riscv32-esp-elf/bin/../lib/gcc/riscv32-esp-elf/12.2.0/:/home/tatan/.espressif/tools/riscv32-esp-elf/esp-12.2.0_20230208/riscv32-esp-elf/bin/../lib/gcc/:/home/tatan/.espressif/tools/riscv32-esp-elf/esp-12.2.0_20230208/riscv32-esp-elf/bin/../lib/gcc/riscv32-esp-elf/12.2.0/../../../../riscv32-esp-elf/lib/
-COLLECT_GCC_OPTIONS='-march=rv32imac_zicsr_zifencei' '-v' '-o' 'CMakeFiles/cmTC_158b7.dir/CMakeCCompilerABI.c.obj' '-c' '-mabi=ilp32' '-misa-spec=20191213' '-march=rv32imac_zicsr_zifencei' '-dumpdir' 'CMakeFiles/cmTC_158b7.dir/CMakeCCompilerABI.c.'
-[2/2] Linking C executable cmTC_158b7
+COLLECT_GCC_OPTIONS='-march=rv32imac_zicsr_zifencei' '-v' '-o' 'CMakeFiles/cmTC_b2ac6.dir/CMakeCCompilerABI.c.obj' '-c' '-mabi=ilp32' '-misa-spec=20191213' '-march=rv32imac_zicsr_zifencei' '-dumpdir' 'CMakeFiles/cmTC_b2ac6.dir/CMakeCCompilerABI.c.'
+[2/2] Linking C executable cmTC_b2ac6
 Using built-in specs.
 Reading specs from /home/tatan/.espressif/tools/riscv32-esp-elf/esp-12.2.0_20230208/riscv32-esp-elf/bin/../lib/gcc/riscv32-esp-elf/12.2.0/../../../../riscv32-esp-elf/lib/nosys.specs
 rename spec link_gcc_c_sequence to nosys_link_gcc_c_sequence
@@ -84,10 +84,10 @@ Supported LTO compression algorithms: zlib
 gcc version 12.2.0 (crosstool-NG esp-12.2.0_20230208) 
 COMPILER_PATH=/home/tatan/.espressif/tools/riscv32-esp-elf/esp-12.2.0_20230208/riscv32-esp-elf/bin/../libexec/gcc/riscv32-esp-elf/12.2.0/:/home/tatan/.espressif/tools/riscv32-esp-elf/esp-12.2.0_20230208/riscv32-esp-elf/bin/../libexec/gcc/:/home/tatan/.espressif/tools/riscv32-esp-elf/esp-12.2.0_20230208/riscv32-esp-elf/bin/../lib/gcc/riscv32-esp-elf/12.2.0/../../../../riscv32-esp-elf/bin/
 LIBRARY_PATH=/home/tatan/.espressif/tools/riscv32-esp-elf/esp-12.2.0_20230208/riscv32-esp-elf/bin/../lib/gcc/riscv32-esp-elf/12.2.0/rv32imac_zicsr_zifencei/ilp32/:/home/tatan/.espressif/tools/riscv32-esp-elf/esp-12.2.0_20230208/riscv32-esp-elf/bin/../lib/gcc/riscv32-esp-elf/12.2.0/../../../../riscv32-esp-elf/lib/rv32imac_zicsr_zifencei/ilp32/:/home/tatan/.espressif/tools/riscv32-esp-elf/esp-12.2.0_20230208/riscv32-esp-elf/bin/../lib/gcc/riscv32-esp-elf/12.2.0/:/home/tatan/.espressif/tools/riscv32-esp-elf/esp-12.2.0_20230208/riscv32-esp-elf/bin/../lib/gcc/:/home/tatan/.espressif/tools/riscv32-esp-elf/esp-12.2.0_20230208/riscv32-esp-elf/bin/../lib/gcc/riscv32-esp-elf/12.2.0/../../../../riscv32-esp-elf/lib/
-COLLECT_GCC_OPTIONS='-nostartfiles' '-march=rv32imac_zicsr_zifencei' '-specs=nosys.specs' '-v' '-o' 'cmTC_158b7' '-mabi=ilp32' '-misa-spec=20191213' '-march=rv32imac_zicsr_zifencei' '-dumpdir' 'cmTC_158b7.'
- /home/tatan/.espressif/tools/riscv32-esp-elf/esp-12.2.0_20230208/riscv32-esp-elf/bin/../libexec/gcc/riscv32-esp-elf/12.2.0/collect2 -plugin /home/tatan/.espressif/tools/riscv32-esp-elf/esp-12.2.0_20230208/riscv32-esp-elf/bin/../libexec/gcc/riscv32-esp-elf/12.2.0/liblto_plugin.so -plugin-opt=/home/tatan/.espressif/tools/riscv32-esp-elf/esp-12.2.0_20230208/riscv32-esp-elf/bin/../libexec/gcc/riscv32-esp-elf/12.2.0/lto-wrapper -plugin-opt=-fresolution=/tmp/cc7V94YP.res -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lc -plugin-opt=-pass-through=-lnosys -plugin-opt=-pass-through=-lc -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lc -plugin-opt=-pass-through=-lnosys -melf32lriscv -o cmTC_158b7 -L/home/tatan/.espressif/tools/riscv32-esp-elf/esp-12.2.0_20230208/riscv32-esp-elf/bin/../lib/gcc/riscv32-esp-elf/12.2.0/rv32imac_zicsr_zifencei/ilp32 -L/home/tatan/.espressif/tools/riscv32-esp-elf/esp-12.2.0_20230208/riscv32-esp-elf/bin/../lib/gcc/riscv32-esp-elf/12.2.0/../../../../riscv32-esp-elf/lib/rv32imac_zicsr_zifencei/ilp32 -L/home/tatan/.espressif/tools/riscv32-esp-elf/esp-12.2.0_20230208/riscv32-esp-elf/bin/../lib/gcc/riscv32-esp-elf/12.2.0 -L/home/tatan/.espressif/tools/riscv32-esp-elf/esp-12.2.0_20230208/riscv32-esp-elf/bin/../lib/gcc -L/home/tatan/.espressif/tools/riscv32-esp-elf/esp-12.2.0_20230208/riscv32-esp-elf/bin/../lib/gcc/riscv32-esp-elf/12.2.0/../../../../riscv32-esp-elf/lib CMakeFiles/cmTC_158b7.dir/CMakeCCompilerABI.c.obj -lgcc -lc -lnosys -lc -lgcc --start-group -lgcc -lc -lnosys --end-group
+COLLECT_GCC_OPTIONS='-nostartfiles' '-march=rv32imac_zicsr_zifencei' '-specs=nosys.specs' '-v' '-o' 'cmTC_b2ac6' '-mabi=ilp32' '-misa-spec=20191213' '-march=rv32imac_zicsr_zifencei' '-dumpdir' 'cmTC_b2ac6.'
+ /home/tatan/.espressif/tools/riscv32-esp-elf/esp-12.2.0_20230208/riscv32-esp-elf/bin/../libexec/gcc/riscv32-esp-elf/12.2.0/collect2 -plugin /home/tatan/.espressif/tools/riscv32-esp-elf/esp-12.2.0_20230208/riscv32-esp-elf/bin/../libexec/gcc/riscv32-esp-elf/12.2.0/liblto_plugin.so -plugin-opt=/home/tatan/.espressif/tools/riscv32-esp-elf/esp-12.2.0_20230208/riscv32-esp-elf/bin/../libexec/gcc/riscv32-esp-elf/12.2.0/lto-wrapper -plugin-opt=-fresolution=/tmp/ccaN83Sk.res -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lc -plugin-opt=-pass-through=-lnosys -plugin-opt=-pass-through=-lc -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lc -plugin-opt=-pass-through=-lnosys -melf32lriscv -o cmTC_b2ac6 -L/home/tatan/.espressif/tools/riscv32-esp-elf/esp-12.2.0_20230208/riscv32-esp-elf/bin/../lib/gcc/riscv32-esp-elf/12.2.0/rv32imac_zicsr_zifencei/ilp32 -L/home/tatan/.espressif/tools/riscv32-esp-elf/esp-12.2.0_20230208/riscv32-esp-elf/bin/../lib/gcc/riscv32-esp-elf/12.2.0/../../../../riscv32-esp-elf/lib/rv32imac_zicsr_zifencei/ilp32 -L/home/tatan/.espressif/tools/riscv32-esp-elf/esp-12.2.0_20230208/riscv32-esp-elf/bin/../lib/gcc/riscv32-esp-elf/12.2.0 -L/home/tatan/.espressif/tools/riscv32-esp-elf/esp-12.2.0_20230208/riscv32-esp-elf/bin/../lib/gcc -L/home/tatan/.espressif/tools/riscv32-esp-elf/esp-12.2.0_20230208/riscv32-esp-elf/bin/../lib/gcc/riscv32-esp-elf/12.2.0/../../../../riscv32-esp-elf/lib CMakeFiles/cmTC_b2ac6.dir/CMakeCCompilerABI.c.obj -lgcc -lc -lnosys -lc -lgcc --start-group -lgcc -lc -lnosys --end-group
 /home/tatan/.espressif/tools/riscv32-esp-elf/esp-12.2.0_20230208/riscv32-esp-elf/bin/../lib/gcc/riscv32-esp-elf/12.2.0/../../../../riscv32-esp-elf/bin/ld: warning: cannot find entry symbol _start; defaulting to 0000000000010074
-COLLECT_GCC_OPTIONS='-nostartfiles' '-march=rv32imac_zicsr_zifencei' '-specs=nosys.specs' '-v' '-o' 'cmTC_158b7' '-mabi=ilp32' '-misa-spec=20191213' '-march=rv32imac_zicsr_zifencei' '-dumpdir' 'cmTC_158b7.'
+COLLECT_GCC_OPTIONS='-nostartfiles' '-march=rv32imac_zicsr_zifencei' '-specs=nosys.specs' '-v' '-o' 'cmTC_b2ac6' '-mabi=ilp32' '-misa-spec=20191213' '-march=rv32imac_zicsr_zifencei' '-dumpdir' 'cmTC_b2ac6.'
 
 
 
@@ -110,7 +110,7 @@ Parsed C implicit link information from above output:
   link line regex: [^( *|.*[/\])(riscv32-esp-elf-ld|CMAKE_LINK_STARTFILE-NOTFOUND|([^/\]+-)?ld|collect2)[^/\]*( |$)]
   ignore line: [Change Dir: /mnt/c/Users/tatan/Documentos/UNAL/8_License_Plate/Linux/4201152-Sist-linux-embebidos/Proyecto/Node_Tank/build/bootloader/CMakeFiles/CMakeTmp]
   ignore line: []
-  ignore line: [Run Build Command(s):/home/tatan/.espressif/tools/ninja/1.10.2/ninja cmTC_158b7 && [1/2] Building C object CMakeFiles/cmTC_158b7.dir/CMakeCCompilerABI.c.obj]
+  ignore line: [Run Build Command(s):/home/tatan/.espressif/tools/ninja/1.10.2/ninja cmTC_b2ac6 && [1/2] Building C object CMakeFiles/cmTC_b2ac6.dir/CMakeCCompilerABI.c.obj]
   ignore line: [Using built-in specs.]
   ignore line: [COLLECT_GCC=/home/tatan/.espressif/tools/riscv32-esp-elf/esp-12.2.0_20230208/riscv32-esp-elf/bin/riscv32-esp-elf-gcc]
   ignore line: [Target: riscv32-esp-elf]
@@ -118,8 +118,8 @@ Parsed C implicit link information from above output:
   ignore line: [Thread model: posix]
   ignore line: [Supported LTO compression algorithms: zlib]
   ignore line: [gcc version 12.2.0 (crosstool-NG esp-12.2.0_20230208) ]
-  ignore line: [COLLECT_GCC_OPTIONS='-march=rv32imac_zicsr_zifencei' '-v' '-o' 'CMakeFiles/cmTC_158b7.dir/CMakeCCompilerABI.c.obj' '-c' '-mabi=ilp32' '-misa-spec=20191213' '-march=rv32imac_zicsr_zifencei' '-dumpdir' 'CMakeFiles/cmTC_158b7.dir/']
-  ignore line: [ /home/tatan/.espressif/tools/riscv32-esp-elf/esp-12.2.0_20230208/riscv32-esp-elf/bin/../libexec/gcc/riscv32-esp-elf/12.2.0/cc1 -quiet -v -imultilib rv32imac_zicsr_zifencei/ilp32 -iprefix /home/tatan/.espressif/tools/riscv32-esp-elf/esp-12.2.0_20230208/riscv32-esp-elf/bin/../lib/gcc/riscv32-esp-elf/12.2.0/ /home/tatan/.espressif/tools/cmake/3.24.0/share/cmake-3.24/Modules/CMakeCCompilerABI.c -quiet -dumpdir CMakeFiles/cmTC_158b7.dir/ -dumpbase CMakeCCompilerABI.c.c -dumpbase-ext .c -march=rv32imac_zicsr_zifencei -mabi=ilp32 -misa-spec=20191213 -march=rv32imac_zicsr_zifencei -version -o /tmp/cc7Z0Wnr.s]
+  ignore line: [COLLECT_GCC_OPTIONS='-march=rv32imac_zicsr_zifencei' '-v' '-o' 'CMakeFiles/cmTC_b2ac6.dir/CMakeCCompilerABI.c.obj' '-c' '-mabi=ilp32' '-misa-spec=20191213' '-march=rv32imac_zicsr_zifencei' '-dumpdir' 'CMakeFiles/cmTC_b2ac6.dir/']
+  ignore line: [ /home/tatan/.espressif/tools/riscv32-esp-elf/esp-12.2.0_20230208/riscv32-esp-elf/bin/../libexec/gcc/riscv32-esp-elf/12.2.0/cc1 -quiet -v -imultilib rv32imac_zicsr_zifencei/ilp32 -iprefix /home/tatan/.espressif/tools/riscv32-esp-elf/esp-12.2.0_20230208/riscv32-esp-elf/bin/../lib/gcc/riscv32-esp-elf/12.2.0/ /home/tatan/.espressif/tools/cmake/3.24.0/share/cmake-3.24/Modules/CMakeCCompilerABI.c -quiet -dumpdir CMakeFiles/cmTC_b2ac6.dir/ -dumpbase CMakeCCompilerABI.c.c -dumpbase-ext .c -march=rv32imac_zicsr_zifencei -mabi=ilp32 -misa-spec=20191213 -march=rv32imac_zicsr_zifencei -version -o /tmp/cczDnidi.s]
   ignore line: [GNU C17 (crosstool-NG esp-12.2.0_20230208) version 12.2.0 (riscv32-esp-elf)]
   ignore line: [	compiled by GNU C version 4.9.2  GMP version 6.2.1  MPFR version 4.1.0  MPC version 1.2.1  isl version isl-0.24-GMP]
   ignore line: []
@@ -140,13 +140,13 @@ Parsed C implicit link information from above output:
   ignore line: []
   ignore line: [GGC heuristics: --param ggc-min-expand=100 --param ggc-min-heapsize=131072]
   ignore line: [Compiler executable checksum: 7a2054f6a25a53bafddb8ada7f059d53]
-  ignore line: [COLLECT_GCC_OPTIONS='-march=rv32imac_zicsr_zifencei' '-v' '-o' 'CMakeFiles/cmTC_158b7.dir/CMakeCCompilerABI.c.obj' '-c' '-mabi=ilp32' '-misa-spec=20191213' '-march=rv32imac_zicsr_zifencei' '-dumpdir' 'CMakeFiles/cmTC_158b7.dir/']
-  ignore line: [ /home/tatan/.espressif/tools/riscv32-esp-elf/esp-12.2.0_20230208/riscv32-esp-elf/bin/../lib/gcc/riscv32-esp-elf/12.2.0/../../../../riscv32-esp-elf/bin/as -v --traditional-format -march=rv32imac_zicsr_zifencei -march=rv32imac_zicsr_zifencei -mabi=ilp32 -misa-spec=20191213 -o CMakeFiles/cmTC_158b7.dir/CMakeCCompilerABI.c.obj /tmp/cc7Z0Wnr.s]
+  ignore line: [COLLECT_GCC_OPTIONS='-march=rv32imac_zicsr_zifencei' '-v' '-o' 'CMakeFiles/cmTC_b2ac6.dir/CMakeCCompilerABI.c.obj' '-c' '-mabi=ilp32' '-misa-spec=20191213' '-march=rv32imac_zicsr_zifencei' '-dumpdir' 'CMakeFiles/cmTC_b2ac6.dir/']
+  ignore line: [ /home/tatan/.espressif/tools/riscv32-esp-elf/esp-12.2.0_20230208/riscv32-esp-elf/bin/../lib/gcc/riscv32-esp-elf/12.2.0/../../../../riscv32-esp-elf/bin/as -v --traditional-format -march=rv32imac_zicsr_zifencei -march=rv32imac_zicsr_zifencei -mabi=ilp32 -misa-spec=20191213 -o CMakeFiles/cmTC_b2ac6.dir/CMakeCCompilerABI.c.obj /tmp/cczDnidi.s]
   ignore line: [GNU assembler version 2.39.0 (riscv32-esp-elf) using BFD version (crosstool-NG esp-12.2.0_20230208) 2.39.0.20220915]
   ignore line: [COMPILER_PATH=/home/tatan/.espressif/tools/riscv32-esp-elf/esp-12.2.0_20230208/riscv32-esp-elf/bin/../libexec/gcc/riscv32-esp-elf/12.2.0/:/home/tatan/.espressif/tools/riscv32-esp-elf/esp-12.2.0_20230208/riscv32-esp-elf/bin/../libexec/gcc/:/home/tatan/.espressif/tools/riscv32-esp-elf/esp-12.2.0_20230208/riscv32-esp-elf/bin/../lib/gcc/riscv32-esp-elf/12.2.0/../../../../riscv32-esp-elf/bin/]
   ignore line: [LIBRARY_PATH=/home/tatan/.espressif/tools/riscv32-esp-elf/esp-12.2.0_20230208/riscv32-esp-elf/bin/../lib/gcc/riscv32-esp-elf/12.2.0/rv32imac_zicsr_zifencei/ilp32/:/home/tatan/.espressif/tools/riscv32-esp-elf/esp-12.2.0_20230208/riscv32-esp-elf/bin/../lib/gcc/riscv32-esp-elf/12.2.0/../../../../riscv32-esp-elf/lib/rv32imac_zicsr_zifencei/ilp32/:/home/tatan/.espressif/tools/riscv32-esp-elf/esp-12.2.0_20230208/riscv32-esp-elf/bin/../lib/gcc/riscv32-esp-elf/12.2.0/:/home/tatan/.espressif/tools/riscv32-esp-elf/esp-12.2.0_20230208/riscv32-esp-elf/bin/../lib/gcc/:/home/tatan/.espressif/tools/riscv32-esp-elf/esp-12.2.0_20230208/riscv32-esp-elf/bin/../lib/gcc/riscv32-esp-elf/12.2.0/../../../../riscv32-esp-elf/lib/]
-  ignore line: [COLLECT_GCC_OPTIONS='-march=rv32imac_zicsr_zifencei' '-v' '-o' 'CMakeFiles/cmTC_158b7.dir/CMakeCCompilerABI.c.obj' '-c' '-mabi=ilp32' '-misa-spec=20191213' '-march=rv32imac_zicsr_zifencei' '-dumpdir' 'CMakeFiles/cmTC_158b7.dir/CMakeCCompilerABI.c.']
-  ignore line: [[2/2] Linking C executable cmTC_158b7]
+  ignore line: [COLLECT_GCC_OPTIONS='-march=rv32imac_zicsr_zifencei' '-v' '-o' 'CMakeFiles/cmTC_b2ac6.dir/CMakeCCompilerABI.c.obj' '-c' '-mabi=ilp32' '-misa-spec=20191213' '-march=rv32imac_zicsr_zifencei' '-dumpdir' 'CMakeFiles/cmTC_b2ac6.dir/CMakeCCompilerABI.c.']
+  ignore line: [[2/2] Linking C executable cmTC_b2ac6]
   ignore line: [Using built-in specs.]
   ignore line: [Reading specs from /home/tatan/.espressif/tools/riscv32-esp-elf/esp-12.2.0_20230208/riscv32-esp-elf/bin/../lib/gcc/riscv32-esp-elf/12.2.0/../../../../riscv32-esp-elf/lib/nosys.specs]
   ignore line: [rename spec link_gcc_c_sequence to nosys_link_gcc_c_sequence]
@@ -159,13 +159,13 @@ Parsed C implicit link information from above output:
   ignore line: [gcc version 12.2.0 (crosstool-NG esp-12.2.0_20230208) ]
   ignore line: [COMPILER_PATH=/home/tatan/.espressif/tools/riscv32-esp-elf/esp-12.2.0_20230208/riscv32-esp-elf/bin/../libexec/gcc/riscv32-esp-elf/12.2.0/:/home/tatan/.espressif/tools/riscv32-esp-elf/esp-12.2.0_20230208/riscv32-esp-elf/bin/../libexec/gcc/:/home/tatan/.espressif/tools/riscv32-esp-elf/esp-12.2.0_20230208/riscv32-esp-elf/bin/../lib/gcc/riscv32-esp-elf/12.2.0/../../../../riscv32-esp-elf/bin/]
   ignore line: [LIBRARY_PATH=/home/tatan/.espressif/tools/riscv32-esp-elf/esp-12.2.0_20230208/riscv32-esp-elf/bin/../lib/gcc/riscv32-esp-elf/12.2.0/rv32imac_zicsr_zifencei/ilp32/:/home/tatan/.espressif/tools/riscv32-esp-elf/esp-12.2.0_20230208/riscv32-esp-elf/bin/../lib/gcc/riscv32-esp-elf/12.2.0/../../../../riscv32-esp-elf/lib/rv32imac_zicsr_zifencei/ilp32/:/home/tatan/.espressif/tools/riscv32-esp-elf/esp-12.2.0_20230208/riscv32-esp-elf/bin/../lib/gcc/riscv32-esp-elf/12.2.0/:/home/tatan/.espressif/tools/riscv32-esp-elf/esp-12.2.0_20230208/riscv32-esp-elf/bin/../lib/gcc/:/home/tatan/.espressif/tools/riscv32-esp-elf/esp-12.2.0_20230208/riscv32-esp-elf/bin/../lib/gcc/riscv32-esp-elf/12.2.0/../../../../riscv32-esp-elf/lib/]
-  ignore line: [COLLECT_GCC_OPTIONS='-nostartfiles' '-march=rv32imac_zicsr_zifencei' '-specs=nosys.specs' '-v' '-o' 'cmTC_158b7' '-mabi=ilp32' '-misa-spec=20191213' '-march=rv32imac_zicsr_zifencei' '-dumpdir' 'cmTC_158b7.']
-  link line: [ /home/tatan/.espressif/tools/riscv32-esp-elf/esp-12.2.0_20230208/riscv32-esp-elf/bin/../libexec/gcc/riscv32-esp-elf/12.2.0/collect2 -plugin /home/tatan/.espressif/tools/riscv32-esp-elf/esp-12.2.0_20230208/riscv32-esp-elf/bin/../libexec/gcc/riscv32-esp-elf/12.2.0/liblto_plugin.so -plugin-opt=/home/tatan/.espressif/tools/riscv32-esp-elf/esp-12.2.0_20230208/riscv32-esp-elf/bin/../libexec/gcc/riscv32-esp-elf/12.2.0/lto-wrapper -plugin-opt=-fresolution=/tmp/cc7V94YP.res -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lc -plugin-opt=-pass-through=-lnosys -plugin-opt=-pass-through=-lc -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lc -plugin-opt=-pass-through=-lnosys -melf32lriscv -o cmTC_158b7 -L/home/tatan/.espressif/tools/riscv32-esp-elf/esp-12.2.0_20230208/riscv32-esp-elf/bin/../lib/gcc/riscv32-esp-elf/12.2.0/rv32imac_zicsr_zifencei/ilp32 -L/home/tatan/.espressif/tools/riscv32-esp-elf/esp-12.2.0_20230208/riscv32-esp-elf/bin/../lib/gcc/riscv32-esp-elf/12.2.0/../../../../riscv32-esp-elf/lib/rv32imac_zicsr_zifencei/ilp32 -L/home/tatan/.espressif/tools/riscv32-esp-elf/esp-12.2.0_20230208/riscv32-esp-elf/bin/../lib/gcc/riscv32-esp-elf/12.2.0 -L/home/tatan/.espressif/tools/riscv32-esp-elf/esp-12.2.0_20230208/riscv32-esp-elf/bin/../lib/gcc -L/home/tatan/.espressif/tools/riscv32-esp-elf/esp-12.2.0_20230208/riscv32-esp-elf/bin/../lib/gcc/riscv32-esp-elf/12.2.0/../../../../riscv32-esp-elf/lib CMakeFiles/cmTC_158b7.dir/CMakeCCompilerABI.c.obj -lgcc -lc -lnosys -lc -lgcc --start-group -lgcc -lc -lnosys --end-group]
+  ignore line: [COLLECT_GCC_OPTIONS='-nostartfiles' '-march=rv32imac_zicsr_zifencei' '-specs=nosys.specs' '-v' '-o' 'cmTC_b2ac6' '-mabi=ilp32' '-misa-spec=20191213' '-march=rv32imac_zicsr_zifencei' '-dumpdir' 'cmTC_b2ac6.']
+  link line: [ /home/tatan/.espressif/tools/riscv32-esp-elf/esp-12.2.0_20230208/riscv32-esp-elf/bin/../libexec/gcc/riscv32-esp-elf/12.2.0/collect2 -plugin /home/tatan/.espressif/tools/riscv32-esp-elf/esp-12.2.0_20230208/riscv32-esp-elf/bin/../libexec/gcc/riscv32-esp-elf/12.2.0/liblto_plugin.so -plugin-opt=/home/tatan/.espressif/tools/riscv32-esp-elf/esp-12.2.0_20230208/riscv32-esp-elf/bin/../libexec/gcc/riscv32-esp-elf/12.2.0/lto-wrapper -plugin-opt=-fresolution=/tmp/ccaN83Sk.res -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lc -plugin-opt=-pass-through=-lnosys -plugin-opt=-pass-through=-lc -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lc -plugin-opt=-pass-through=-lnosys -melf32lriscv -o cmTC_b2ac6 -L/home/tatan/.espressif/tools/riscv32-esp-elf/esp-12.2.0_20230208/riscv32-esp-elf/bin/../lib/gcc/riscv32-esp-elf/12.2.0/rv32imac_zicsr_zifencei/ilp32 -L/home/tatan/.espressif/tools/riscv32-esp-elf/esp-12.2.0_20230208/riscv32-esp-elf/bin/../lib/gcc/riscv32-esp-elf/12.2.0/../../../../riscv32-esp-elf/lib/rv32imac_zicsr_zifencei/ilp32 -L/home/tatan/.espressif/tools/riscv32-esp-elf/esp-12.2.0_20230208/riscv32-esp-elf/bin/../lib/gcc/riscv32-esp-elf/12.2.0 -L/home/tatan/.espressif/tools/riscv32-esp-elf/esp-12.2.0_20230208/riscv32-esp-elf/bin/../lib/gcc -L/home/tatan/.espressif/tools/riscv32-esp-elf/esp-12.2.0_20230208/riscv32-esp-elf/bin/../lib/gcc/riscv32-esp-elf/12.2.0/../../../../riscv32-esp-elf/lib CMakeFiles/cmTC_b2ac6.dir/CMakeCCompilerABI.c.obj -lgcc -lc -lnosys -lc -lgcc --start-group -lgcc -lc -lnosys --end-group]
     arg [/home/tatan/.espressif/tools/riscv32-esp-elf/esp-12.2.0_20230208/riscv32-esp-elf/bin/../libexec/gcc/riscv32-esp-elf/12.2.0/collect2] ==> ignore
     arg [-plugin] ==> ignore
     arg [/home/tatan/.espressif/tools/riscv32-esp-elf/esp-12.2.0_20230208/riscv32-esp-elf/bin/../libexec/gcc/riscv32-esp-elf/12.2.0/liblto_plugin.so] ==> ignore
     arg [-plugin-opt=/home/tatan/.espressif/tools/riscv32-esp-elf/esp-12.2.0_20230208/riscv32-esp-elf/bin/../libexec/gcc/riscv32-esp-elf/12.2.0/lto-wrapper] ==> ignore
-    arg [-plugin-opt=-fresolution=/tmp/cc7V94YP.res] ==> ignore
+    arg [-plugin-opt=-fresolution=/tmp/ccaN83Sk.res] ==> ignore
     arg [-plugin-opt=-pass-through=-lgcc] ==> ignore
     arg [-plugin-opt=-pass-through=-lc] ==> ignore
     arg [-plugin-opt=-pass-through=-lnosys] ==> ignore
@@ -176,13 +176,13 @@ Parsed C implicit link information from above output:
     arg [-plugin-opt=-pass-through=-lnosys] ==> ignore
     arg [-melf32lriscv] ==> ignore
     arg [-o] ==> ignore
-    arg [cmTC_158b7] ==> ignore
+    arg [cmTC_b2ac6] ==> ignore
     arg [-L/home/tatan/.espressif/tools/riscv32-esp-elf/esp-12.2.0_20230208/riscv32-esp-elf/bin/../lib/gcc/riscv32-esp-elf/12.2.0/rv32imac_zicsr_zifencei/ilp32] ==> dir [/home/tatan/.espressif/tools/riscv32-esp-elf/esp-12.2.0_20230208/riscv32-esp-elf/bin/../lib/gcc/riscv32-esp-elf/12.2.0/rv32imac_zicsr_zifencei/ilp32]
     arg [-L/home/tatan/.espressif/tools/riscv32-esp-elf/esp-12.2.0_20230208/riscv32-esp-elf/bin/../lib/gcc/riscv32-esp-elf/12.2.0/../../../../riscv32-esp-elf/lib/rv32imac_zicsr_zifencei/ilp32] ==> dir [/home/tatan/.espressif/tools/riscv32-esp-elf/esp-12.2.0_20230208/riscv32-esp-elf/bin/../lib/gcc/riscv32-esp-elf/12.2.0/../../../../riscv32-esp-elf/lib/rv32imac_zicsr_zifencei/ilp32]
     arg [-L/home/tatan/.espressif/tools/riscv32-esp-elf/esp-12.2.0_20230208/riscv32-esp-elf/bin/../lib/gcc/riscv32-esp-elf/12.2.0] ==> dir [/home/tatan/.espressif/tools/riscv32-esp-elf/esp-12.2.0_20230208/riscv32-esp-elf/bin/../lib/gcc/riscv32-esp-elf/12.2.0]
     arg [-L/home/tatan/.espressif/tools/riscv32-esp-elf/esp-12.2.0_20230208/riscv32-esp-elf/bin/../lib/gcc] ==> dir [/home/tatan/.espressif/tools/riscv32-esp-elf/esp-12.2.0_20230208/riscv32-esp-elf/bin/../lib/gcc]
     arg [-L/home/tatan/.espressif/tools/riscv32-esp-elf/esp-12.2.0_20230208/riscv32-esp-elf/bin/../lib/gcc/riscv32-esp-elf/12.2.0/../../../../riscv32-esp-elf/lib] ==> dir [/home/tatan/.espressif/tools/riscv32-esp-elf/esp-12.2.0_20230208/riscv32-esp-elf/bin/../lib/gcc/riscv32-esp-elf/12.2.0/../../../../riscv32-esp-elf/lib]
-    arg [CMakeFiles/cmTC_158b7.dir/CMakeCCompilerABI.c.obj] ==> ignore
+    arg [CMakeFiles/cmTC_b2ac6.dir/CMakeCCompilerABI.c.obj] ==> ignore
     arg [-lgcc] ==> lib [gcc]
     arg [-lc] ==> lib [c]
     arg [-lnosys] ==> lib [nosys]
@@ -207,7 +207,7 @@ Parsed C implicit link information from above output:
 Detecting CXX compiler ABI info compiled with the following output:
 Change Dir: /mnt/c/Users/tatan/Documentos/UNAL/8_License_Plate/Linux/4201152-Sist-linux-embebidos/Proyecto/Node_Tank/build/bootloader/CMakeFiles/CMakeTmp
 
-Run Build Command(s):/home/tatan/.espressif/tools/ninja/1.10.2/ninja cmTC_32ae9 && [1/2] Building CXX object CMakeFiles/cmTC_32ae9.dir/CMakeCXXCompilerABI.cpp.obj
+Run Build Command(s):/home/tatan/.espressif/tools/ninja/1.10.2/ninja cmTC_50e52 && [1/2] Building CXX object CMakeFiles/cmTC_50e52.dir/CMakeCXXCompilerABI.cpp.obj
 Using built-in specs.
 COLLECT_GCC=/home/tatan/.espressif/tools/riscv32-esp-elf/esp-12.2.0_20230208/riscv32-esp-elf/bin/riscv32-esp-elf-g++
 Target: riscv32-esp-elf
@@ -215,8 +215,8 @@ Configured with: /builds/idf/crosstool-NG/.build/riscv32-esp-elf/src/gcc/configu
 Thread model: posix
 Supported LTO compression algorithms: zlib
 gcc version 12.2.0 (crosstool-NG esp-12.2.0_20230208) 
-COLLECT_GCC_OPTIONS='-march=rv32imac_zicsr_zifencei' '-v' '-o' 'CMakeFiles/cmTC_32ae9.dir/CMakeCXXCompilerABI.cpp.obj' '-c' '-mabi=ilp32' '-misa-spec=20191213' '-march=rv32imac_zicsr_zifencei' '-dumpdir' 'CMakeFiles/cmTC_32ae9.dir/'
- /home/tatan/.espressif/tools/riscv32-esp-elf/esp-12.2.0_20230208/riscv32-esp-elf/bin/../libexec/gcc/riscv32-esp-elf/12.2.0/cc1plus -quiet -v -imultilib rv32imac_zicsr_zifencei/ilp32 -iprefix /home/tatan/.espressif/tools/riscv32-esp-elf/esp-12.2.0_20230208/riscv32-esp-elf/bin/../lib/gcc/riscv32-esp-elf/12.2.0/ /home/tatan/.espressif/tools/cmake/3.24.0/share/cmake-3.24/Modules/CMakeCXXCompilerABI.cpp -quiet -dumpdir CMakeFiles/cmTC_32ae9.dir/ -dumpbase CMakeCXXCompilerABI.cpp.cpp -dumpbase-ext .cpp -march=rv32imac_zicsr_zifencei -mabi=ilp32 -misa-spec=20191213 -march=rv32imac_zicsr_zifencei -version -o /tmp/cckEaKRe.s
+COLLECT_GCC_OPTIONS='-march=rv32imac_zicsr_zifencei' '-v' '-o' 'CMakeFiles/cmTC_50e52.dir/CMakeCXXCompilerABI.cpp.obj' '-c' '-mabi=ilp32' '-misa-spec=20191213' '-march=rv32imac_zicsr_zifencei' '-dumpdir' 'CMakeFiles/cmTC_50e52.dir/'
+ /home/tatan/.espressif/tools/riscv32-esp-elf/esp-12.2.0_20230208/riscv32-esp-elf/bin/../libexec/gcc/riscv32-esp-elf/12.2.0/cc1plus -quiet -v -imultilib rv32imac_zicsr_zifencei/ilp32 -iprefix /home/tatan/.espressif/tools/riscv32-esp-elf/esp-12.2.0_20230208/riscv32-esp-elf/bin/../lib/gcc/riscv32-esp-elf/12.2.0/ /home/tatan/.espressif/tools/cmake/3.24.0/share/cmake-3.24/Modules/CMakeCXXCompilerABI.cpp -quiet -dumpdir CMakeFiles/cmTC_50e52.dir/ -dumpbase CMakeCXXCompilerABI.cpp.cpp -dumpbase-ext .cpp -march=rv32imac_zicsr_zifencei -mabi=ilp32 -misa-spec=20191213 -march=rv32imac_zicsr_zifencei -version -o /tmp/ccJGELxn.s
 GNU C++17 (crosstool-NG esp-12.2.0_20230208) version 12.2.0 (riscv32-esp-elf)
 	compiled by GNU C version 4.9.2, GMP version 6.2.1, MPFR version 4.1.0, MPC version 1.2.1, isl version isl-0.24-GMP
 
@@ -243,13 +243,13 @@ GNU C++17 (crosstool-NG esp-12.2.0_20230208) version 12.2.0 (riscv32-esp-elf)
 
 GGC heuristics: --param ggc-min-expand=100 --param ggc-min-heapsize=131072
 Compiler executable checksum: 67c78a240b9dd80ea9d1c6a3359bbb3b
-COLLECT_GCC_OPTIONS='-march=rv32imac_zicsr_zifencei' '-v' '-o' 'CMakeFiles/cmTC_32ae9.dir/CMakeCXXCompilerABI.cpp.obj' '-c' '-mabi=ilp32' '-misa-spec=20191213' '-march=rv32imac_zicsr_zifencei' '-dumpdir' 'CMakeFiles/cmTC_32ae9.dir/'
- /home/tatan/.espressif/tools/riscv32-esp-elf/esp-12.2.0_20230208/riscv32-esp-elf/bin/../lib/gcc/riscv32-esp-elf/12.2.0/../../../../riscv32-esp-elf/bin/as -v --traditional-format -march=rv32imac_zicsr_zifencei -march=rv32imac_zicsr_zifencei -mabi=ilp32 -misa-spec=20191213 -o CMakeFiles/cmTC_32ae9.dir/CMakeCXXCompilerABI.cpp.obj /tmp/cckEaKRe.s
+COLLECT_GCC_OPTIONS='-march=rv32imac_zicsr_zifencei' '-v' '-o' 'CMakeFiles/cmTC_50e52.dir/CMakeCXXCompilerABI.cpp.obj' '-c' '-mabi=ilp32' '-misa-spec=20191213' '-march=rv32imac_zicsr_zifencei' '-dumpdir' 'CMakeFiles/cmTC_50e52.dir/'
+ /home/tatan/.espressif/tools/riscv32-esp-elf/esp-12.2.0_20230208/riscv32-esp-elf/bin/../lib/gcc/riscv32-esp-elf/12.2.0/../../../../riscv32-esp-elf/bin/as -v --traditional-format -march=rv32imac_zicsr_zifencei -march=rv32imac_zicsr_zifencei -mabi=ilp32 -misa-spec=20191213 -o CMakeFiles/cmTC_50e52.dir/CMakeCXXCompilerABI.cpp.obj /tmp/ccJGELxn.s
 GNU assembler version 2.39.0 (riscv32-esp-elf) using BFD version (crosstool-NG esp-12.2.0_20230208) 2.39.0.20220915
 COMPILER_PATH=/home/tatan/.espressif/tools/riscv32-esp-elf/esp-12.2.0_20230208/riscv32-esp-elf/bin/../libexec/gcc/riscv32-esp-elf/12.2.0/:/home/tatan/.espressif/tools/riscv32-esp-elf/esp-12.2.0_20230208/riscv32-esp-elf/bin/../libexec/gcc/:/home/tatan/.espressif/tools/riscv32-esp-elf/esp-12.2.0_20230208/riscv32-esp-elf/bin/../lib/gcc/riscv32-esp-elf/12.2.0/../../../../riscv32-esp-elf/bin/
 LIBRARY_PATH=/home/tatan/.espressif/tools/riscv32-esp-elf/esp-12.2.0_20230208/riscv32-esp-elf/bin/../lib/gcc/riscv32-esp-elf/12.2.0/rv32imac_zicsr_zifencei/ilp32/:/home/tatan/.espressif/tools/riscv32-esp-elf/esp-12.2.0_20230208/riscv32-esp-elf/bin/../lib/gcc/riscv32-esp-elf/12.2.0/../../../../riscv32-esp-elf/lib/rv32imac_zicsr_zifencei/ilp32/:/home/tatan/.espressif/tools/riscv32-esp-elf/esp-12.2.0_20230208/riscv32-esp-elf/bin/../lib/gcc/riscv32-esp-elf/12.2.0/:/home/tatan/.espressif/tools/riscv32-esp-elf/esp-12.2.0_20230208/riscv32-esp-elf/bin/../lib/gcc/:/home/tatan/.espressif/tools/riscv32-esp-elf/esp-12.2.0_20230208/riscv32-esp-elf/bin/../lib/gcc/riscv32-esp-elf/12.2.0/../../../../riscv32-esp-elf/lib/
-COLLECT_GCC_OPTIONS='-march=rv32imac_zicsr_zifencei' '-v' '-o' 'CMakeFiles/cmTC_32ae9.dir/CMakeCXXCompilerABI.cpp.obj' '-c' '-mabi=ilp32' '-misa-spec=20191213' '-march=rv32imac_zicsr_zifencei' '-dumpdir' 'CMakeFiles/cmTC_32ae9.dir/CMakeCXXCompilerABI.cpp.'
-[2/2] Linking CXX executable cmTC_32ae9
+COLLECT_GCC_OPTIONS='-march=rv32imac_zicsr_zifencei' '-v' '-o' 'CMakeFiles/cmTC_50e52.dir/CMakeCXXCompilerABI.cpp.obj' '-c' '-mabi=ilp32' '-misa-spec=20191213' '-march=rv32imac_zicsr_zifencei' '-dumpdir' 'CMakeFiles/cmTC_50e52.dir/CMakeCXXCompilerABI.cpp.'
+[2/2] Linking CXX executable cmTC_50e52
 Using built-in specs.
 Reading specs from /home/tatan/.espressif/tools/riscv32-esp-elf/esp-12.2.0_20230208/riscv32-esp-elf/bin/../lib/gcc/riscv32-esp-elf/12.2.0/../../../../riscv32-esp-elf/lib/nosys.specs
 rename spec link_gcc_c_sequence to nosys_link_gcc_c_sequence
@@ -262,10 +262,10 @@ Supported LTO compression algorithms: zlib
 gcc version 12.2.0 (crosstool-NG esp-12.2.0_20230208) 
 COMPILER_PATH=/home/tatan/.espressif/tools/riscv32-esp-elf/esp-12.2.0_20230208/riscv32-esp-elf/bin/../libexec/gcc/riscv32-esp-elf/12.2.0/:/home/tatan/.espressif/tools/riscv32-esp-elf/esp-12.2.0_20230208/riscv32-esp-elf/bin/../libexec/gcc/:/home/tatan/.espressif/tools/riscv32-esp-elf/esp-12.2.0_20230208/riscv32-esp-elf/bin/../lib/gcc/riscv32-esp-elf/12.2.0/../../../../riscv32-esp-elf/bin/
 LIBRARY_PATH=/home/tatan/.espressif/tools/riscv32-esp-elf/esp-12.2.0_20230208/riscv32-esp-elf/bin/../lib/gcc/riscv32-esp-elf/12.2.0/rv32imac_zicsr_zifencei/ilp32/:/home/tatan/.espressif/tools/riscv32-esp-elf/esp-12.2.0_20230208/riscv32-esp-elf/bin/../lib/gcc/riscv32-esp-elf/12.2.0/../../../../riscv32-esp-elf/lib/rv32imac_zicsr_zifencei/ilp32/:/home/tatan/.espressif/tools/riscv32-esp-elf/esp-12.2.0_20230208/riscv32-esp-elf/bin/../lib/gcc/riscv32-esp-elf/12.2.0/:/home/tatan/.espressif/tools/riscv32-esp-elf/esp-12.2.0_20230208/riscv32-esp-elf/bin/../lib/gcc/:/home/tatan/.espressif/tools/riscv32-esp-elf/esp-12.2.0_20230208/riscv32-esp-elf/bin/../lib/gcc/riscv32-esp-elf/12.2.0/../../../../riscv32-esp-elf/lib/
-COLLECT_GCC_OPTIONS='-nostartfiles' '-march=rv32imac_zicsr_zifencei' '-specs=nosys.specs' '-v' '-o' 'cmTC_32ae9' '-mabi=ilp32' '-misa-spec=20191213' '-march=rv32imac_zicsr_zifencei' '-dumpdir' 'cmTC_32ae9.'
- /home/tatan/.espressif/tools/riscv32-esp-elf/esp-12.2.0_20230208/riscv32-esp-elf/bin/../libexec/gcc/riscv32-esp-elf/12.2.0/collect2 -plugin /home/tatan/.espressif/tools/riscv32-esp-elf/esp-12.2.0_20230208/riscv32-esp-elf/bin/../libexec/gcc/riscv32-esp-elf/12.2.0/liblto_plugin.so -plugin-opt=/home/tatan/.espressif/tools/riscv32-esp-elf/esp-12.2.0_20230208/riscv32-esp-elf/bin/../libexec/gcc/riscv32-esp-elf/12.2.0/lto-wrapper -plugin-opt=-fresolution=/tmp/cckFrxuk.res -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lc -plugin-opt=-pass-through=-lnosys -plugin-opt=-pass-through=-lc -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lc -plugin-opt=-pass-through=-lnosys -melf32lriscv -o cmTC_32ae9 -L/home/tatan/.espressif/tools/riscv32-esp-elf/esp-12.2.0_20230208/riscv32-esp-elf/bin/../lib/gcc/riscv32-esp-elf/12.2.0/rv32imac_zicsr_zifencei/ilp32 -L/home/tatan/.espressif/tools/riscv32-esp-elf/esp-12.2.0_20230208/riscv32-esp-elf/bin/../lib/gcc/riscv32-esp-elf/12.2.0/../../../../riscv32-esp-elf/lib/rv32imac_zicsr_zifencei/ilp32 -L/home/tatan/.espressif/tools/riscv32-esp-elf/esp-12.2.0_20230208/riscv32-esp-elf/bin/../lib/gcc/riscv32-esp-elf/12.2.0 -L/home/tatan/.espressif/tools/riscv32-esp-elf/esp-12.2.0_20230208/riscv32-esp-elf/bin/../lib/gcc -L/home/tatan/.espressif/tools/riscv32-esp-elf/esp-12.2.0_20230208/riscv32-esp-elf/bin/../lib/gcc/riscv32-esp-elf/12.2.0/../../../../riscv32-esp-elf/lib CMakeFiles/cmTC_32ae9.dir/CMakeCXXCompilerABI.cpp.obj -lstdc++ -lm -lgcc -lc -lnosys -lc -lgcc --start-group -lgcc -lc -lnosys --end-group
+COLLECT_GCC_OPTIONS='-nostartfiles' '-march=rv32imac_zicsr_zifencei' '-specs=nosys.specs' '-v' '-o' 'cmTC_50e52' '-mabi=ilp32' '-misa-spec=20191213' '-march=rv32imac_zicsr_zifencei' '-dumpdir' 'cmTC_50e52.'
+ /home/tatan/.espressif/tools/riscv32-esp-elf/esp-12.2.0_20230208/riscv32-esp-elf/bin/../libexec/gcc/riscv32-esp-elf/12.2.0/collect2 -plugin /home/tatan/.espressif/tools/riscv32-esp-elf/esp-12.2.0_20230208/riscv32-esp-elf/bin/../libexec/gcc/riscv32-esp-elf/12.2.0/liblto_plugin.so -plugin-opt=/home/tatan/.espressif/tools/riscv32-esp-elf/esp-12.2.0_20230208/riscv32-esp-elf/bin/../libexec/gcc/riscv32-esp-elf/12.2.0/lto-wrapper -plugin-opt=-fresolution=/tmp/ccmMPD38.res -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lc -plugin-opt=-pass-through=-lnosys -plugin-opt=-pass-through=-lc -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lc -plugin-opt=-pass-through=-lnosys -melf32lriscv -o cmTC_50e52 -L/home/tatan/.espressif/tools/riscv32-esp-elf/esp-12.2.0_20230208/riscv32-esp-elf/bin/../lib/gcc/riscv32-esp-elf/12.2.0/rv32imac_zicsr_zifencei/ilp32 -L/home/tatan/.espressif/tools/riscv32-esp-elf/esp-12.2.0_20230208/riscv32-esp-elf/bin/../lib/gcc/riscv32-esp-elf/12.2.0/../../../../riscv32-esp-elf/lib/rv32imac_zicsr_zifencei/ilp32 -L/home/tatan/.espressif/tools/riscv32-esp-elf/esp-12.2.0_20230208/riscv32-esp-elf/bin/../lib/gcc/riscv32-esp-elf/12.2.0 -L/home/tatan/.espressif/tools/riscv32-esp-elf/esp-12.2.0_20230208/riscv32-esp-elf/bin/../lib/gcc -L/home/tatan/.espressif/tools/riscv32-esp-elf/esp-12.2.0_20230208/riscv32-esp-elf/bin/../lib/gcc/riscv32-esp-elf/12.2.0/../../../../riscv32-esp-elf/lib CMakeFiles/cmTC_50e52.dir/CMakeCXXCompilerABI.cpp.obj -lstdc++ -lm -lgcc -lc -lnosys -lc -lgcc --start-group -lgcc -lc -lnosys --end-group
 /home/tatan/.espressif/tools/riscv32-esp-elf/esp-12.2.0_20230208/riscv32-esp-elf/bin/../lib/gcc/riscv32-esp-elf/12.2.0/../../../../riscv32-esp-elf/bin/ld: warning: cannot find entry symbol _start; defaulting to 0000000000010074
-COLLECT_GCC_OPTIONS='-nostartfiles' '-march=rv32imac_zicsr_zifencei' '-specs=nosys.specs' '-v' '-o' 'cmTC_32ae9' '-mabi=ilp32' '-misa-spec=20191213' '-march=rv32imac_zicsr_zifencei' '-dumpdir' 'cmTC_32ae9.'
+COLLECT_GCC_OPTIONS='-nostartfiles' '-march=rv32imac_zicsr_zifencei' '-specs=nosys.specs' '-v' '-o' 'cmTC_50e52' '-mabi=ilp32' '-misa-spec=20191213' '-march=rv32imac_zicsr_zifencei' '-dumpdir' 'cmTC_50e52.'
 
 
 
@@ -294,7 +294,7 @@ Parsed CXX implicit link information from above output:
   link line regex: [^( *|.*[/\])(riscv32-esp-elf-ld|CMAKE_LINK_STARTFILE-NOTFOUND|([^/\]+-)?ld|collect2)[^/\]*( |$)]
   ignore line: [Change Dir: /mnt/c/Users/tatan/Documentos/UNAL/8_License_Plate/Linux/4201152-Sist-linux-embebidos/Proyecto/Node_Tank/build/bootloader/CMakeFiles/CMakeTmp]
   ignore line: []
-  ignore line: [Run Build Command(s):/home/tatan/.espressif/tools/ninja/1.10.2/ninja cmTC_32ae9 && [1/2] Building CXX object CMakeFiles/cmTC_32ae9.dir/CMakeCXXCompilerABI.cpp.obj]
+  ignore line: [Run Build Command(s):/home/tatan/.espressif/tools/ninja/1.10.2/ninja cmTC_50e52 && [1/2] Building CXX object CMakeFiles/cmTC_50e52.dir/CMakeCXXCompilerABI.cpp.obj]
   ignore line: [Using built-in specs.]
   ignore line: [COLLECT_GCC=/home/tatan/.espressif/tools/riscv32-esp-elf/esp-12.2.0_20230208/riscv32-esp-elf/bin/riscv32-esp-elf-g++]
   ignore line: [Target: riscv32-esp-elf]
@@ -302,8 +302,8 @@ Parsed CXX implicit link information from above output:
   ignore line: [Thread model: posix]
   ignore line: [Supported LTO compression algorithms: zlib]
   ignore line: [gcc version 12.2.0 (crosstool-NG esp-12.2.0_20230208) ]
-  ignore line: [COLLECT_GCC_OPTIONS='-march=rv32imac_zicsr_zifencei' '-v' '-o' 'CMakeFiles/cmTC_32ae9.dir/CMakeCXXCompilerABI.cpp.obj' '-c' '-mabi=ilp32' '-misa-spec=20191213' '-march=rv32imac_zicsr_zifencei' '-dumpdir' 'CMakeFiles/cmTC_32ae9.dir/']
-  ignore line: [ /home/tatan/.espressif/tools/riscv32-esp-elf/esp-12.2.0_20230208/riscv32-esp-elf/bin/../libexec/gcc/riscv32-esp-elf/12.2.0/cc1plus -quiet -v -imultilib rv32imac_zicsr_zifencei/ilp32 -iprefix /home/tatan/.espressif/tools/riscv32-esp-elf/esp-12.2.0_20230208/riscv32-esp-elf/bin/../lib/gcc/riscv32-esp-elf/12.2.0/ /home/tatan/.espressif/tools/cmake/3.24.0/share/cmake-3.24/Modules/CMakeCXXCompilerABI.cpp -quiet -dumpdir CMakeFiles/cmTC_32ae9.dir/ -dumpbase CMakeCXXCompilerABI.cpp.cpp -dumpbase-ext .cpp -march=rv32imac_zicsr_zifencei -mabi=ilp32 -misa-spec=20191213 -march=rv32imac_zicsr_zifencei -version -o /tmp/cckEaKRe.s]
+  ignore line: [COLLECT_GCC_OPTIONS='-march=rv32imac_zicsr_zifencei' '-v' '-o' 'CMakeFiles/cmTC_50e52.dir/CMakeCXXCompilerABI.cpp.obj' '-c' '-mabi=ilp32' '-misa-spec=20191213' '-march=rv32imac_zicsr_zifencei' '-dumpdir' 'CMakeFiles/cmTC_50e52.dir/']
+  ignore line: [ /home/tatan/.espressif/tools/riscv32-esp-elf/esp-12.2.0_20230208/riscv32-esp-elf/bin/../libexec/gcc/riscv32-esp-elf/12.2.0/cc1plus -quiet -v -imultilib rv32imac_zicsr_zifencei/ilp32 -iprefix /home/tatan/.espressif/tools/riscv32-esp-elf/esp-12.2.0_20230208/riscv32-esp-elf/bin/../lib/gcc/riscv32-esp-elf/12.2.0/ /home/tatan/.espressif/tools/cmake/3.24.0/share/cmake-3.24/Modules/CMakeCXXCompilerABI.cpp -quiet -dumpdir CMakeFiles/cmTC_50e52.dir/ -dumpbase CMakeCXXCompilerABI.cpp.cpp -dumpbase-ext .cpp -march=rv32imac_zicsr_zifencei -mabi=ilp32 -misa-spec=20191213 -march=rv32imac_zicsr_zifencei -version -o /tmp/ccJGELxn.s]
   ignore line: [GNU C++17 (crosstool-NG esp-12.2.0_20230208) version 12.2.0 (riscv32-esp-elf)]
   ignore line: [	compiled by GNU C version 4.9.2  GMP version 6.2.1  MPFR version 4.1.0  MPC version 1.2.1  isl version isl-0.24-GMP]
   ignore line: []
@@ -330,13 +330,13 @@ Parsed CXX implicit link information from above output:
   ignore line: []
   ignore line: [GGC heuristics: --param ggc-min-expand=100 --param ggc-min-heapsize=131072]
   ignore line: [Compiler executable checksum: 67c78a240b9dd80ea9d1c6a3359bbb3b]
-  ignore line: [COLLECT_GCC_OPTIONS='-march=rv32imac_zicsr_zifencei' '-v' '-o' 'CMakeFiles/cmTC_32ae9.dir/CMakeCXXCompilerABI.cpp.obj' '-c' '-mabi=ilp32' '-misa-spec=20191213' '-march=rv32imac_zicsr_zifencei' '-dumpdir' 'CMakeFiles/cmTC_32ae9.dir/']
-  ignore line: [ /home/tatan/.espressif/tools/riscv32-esp-elf/esp-12.2.0_20230208/riscv32-esp-elf/bin/../lib/gcc/riscv32-esp-elf/12.2.0/../../../../riscv32-esp-elf/bin/as -v --traditional-format -march=rv32imac_zicsr_zifencei -march=rv32imac_zicsr_zifencei -mabi=ilp32 -misa-spec=20191213 -o CMakeFiles/cmTC_32ae9.dir/CMakeCXXCompilerABI.cpp.obj /tmp/cckEaKRe.s]
+  ignore line: [COLLECT_GCC_OPTIONS='-march=rv32imac_zicsr_zifencei' '-v' '-o' 'CMakeFiles/cmTC_50e52.dir/CMakeCXXCompilerABI.cpp.obj' '-c' '-mabi=ilp32' '-misa-spec=20191213' '-march=rv32imac_zicsr_zifencei' '-dumpdir' 'CMakeFiles/cmTC_50e52.dir/']
+  ignore line: [ /home/tatan/.espressif/tools/riscv32-esp-elf/esp-12.2.0_20230208/riscv32-esp-elf/bin/../lib/gcc/riscv32-esp-elf/12.2.0/../../../../riscv32-esp-elf/bin/as -v --traditional-format -march=rv32imac_zicsr_zifencei -march=rv32imac_zicsr_zifencei -mabi=ilp32 -misa-spec=20191213 -o CMakeFiles/cmTC_50e52.dir/CMakeCXXCompilerABI.cpp.obj /tmp/ccJGELxn.s]
   ignore line: [GNU assembler version 2.39.0 (riscv32-esp-elf) using BFD version (crosstool-NG esp-12.2.0_20230208) 2.39.0.20220915]
   ignore line: [COMPILER_PATH=/home/tatan/.espressif/tools/riscv32-esp-elf/esp-12.2.0_20230208/riscv32-esp-elf/bin/../libexec/gcc/riscv32-esp-elf/12.2.0/:/home/tatan/.espressif/tools/riscv32-esp-elf/esp-12.2.0_20230208/riscv32-esp-elf/bin/../libexec/gcc/:/home/tatan/.espressif/tools/riscv32-esp-elf/esp-12.2.0_20230208/riscv32-esp-elf/bin/../lib/gcc/riscv32-esp-elf/12.2.0/../../../../riscv32-esp-elf/bin/]
   ignore line: [LIBRARY_PATH=/home/tatan/.espressif/tools/riscv32-esp-elf/esp-12.2.0_20230208/riscv32-esp-elf/bin/../lib/gcc/riscv32-esp-elf/12.2.0/rv32imac_zicsr_zifencei/ilp32/:/home/tatan/.espressif/tools/riscv32-esp-elf/esp-12.2.0_20230208/riscv32-esp-elf/bin/../lib/gcc/riscv32-esp-elf/12.2.0/../../../../riscv32-esp-elf/lib/rv32imac_zicsr_zifencei/ilp32/:/home/tatan/.espressif/tools/riscv32-esp-elf/esp-12.2.0_20230208/riscv32-esp-elf/bin/../lib/gcc/riscv32-esp-elf/12.2.0/:/home/tatan/.espressif/tools/riscv32-esp-elf/esp-12.2.0_20230208/riscv32-esp-elf/bin/../lib/gcc/:/home/tatan/.espressif/tools/riscv32-esp-elf/esp-12.2.0_20230208/riscv32-esp-elf/bin/../lib/gcc/riscv32-esp-elf/12.2.0/../../../../riscv32-esp-elf/lib/]
-  ignore line: [COLLECT_GCC_OPTIONS='-march=rv32imac_zicsr_zifencei' '-v' '-o' 'CMakeFiles/cmTC_32ae9.dir/CMakeCXXCompilerABI.cpp.obj' '-c' '-mabi=ilp32' '-misa-spec=20191213' '-march=rv32imac_zicsr_zifencei' '-dumpdir' 'CMakeFiles/cmTC_32ae9.dir/CMakeCXXCompilerABI.cpp.']
-  ignore line: [[2/2] Linking CXX executable cmTC_32ae9]
+  ignore line: [COLLECT_GCC_OPTIONS='-march=rv32imac_zicsr_zifencei' '-v' '-o' 'CMakeFiles/cmTC_50e52.dir/CMakeCXXCompilerABI.cpp.obj' '-c' '-mabi=ilp32' '-misa-spec=20191213' '-march=rv32imac_zicsr_zifencei' '-dumpdir' 'CMakeFiles/cmTC_50e52.dir/CMakeCXXCompilerABI.cpp.']
+  ignore line: [[2/2] Linking CXX executable cmTC_50e52]
   ignore line: [Using built-in specs.]
   ignore line: [Reading specs from /home/tatan/.espressif/tools/riscv32-esp-elf/esp-12.2.0_20230208/riscv32-esp-elf/bin/../lib/gcc/riscv32-esp-elf/12.2.0/../../../../riscv32-esp-elf/lib/nosys.specs]
   ignore line: [rename spec link_gcc_c_sequence to nosys_link_gcc_c_sequence]
@@ -349,13 +349,13 @@ Parsed CXX implicit link information from above output:
   ignore line: [gcc version 12.2.0 (crosstool-NG esp-12.2.0_20230208) ]
   ignore line: [COMPILER_PATH=/home/tatan/.espressif/tools/riscv32-esp-elf/esp-12.2.0_20230208/riscv32-esp-elf/bin/../libexec/gcc/riscv32-esp-elf/12.2.0/:/home/tatan/.espressif/tools/riscv32-esp-elf/esp-12.2.0_20230208/riscv32-esp-elf/bin/../libexec/gcc/:/home/tatan/.espressif/tools/riscv32-esp-elf/esp-12.2.0_20230208/riscv32-esp-elf/bin/../lib/gcc/riscv32-esp-elf/12.2.0/../../../../riscv32-esp-elf/bin/]
   ignore line: [LIBRARY_PATH=/home/tatan/.espressif/tools/riscv32-esp-elf/esp-12.2.0_20230208/riscv32-esp-elf/bin/../lib/gcc/riscv32-esp-elf/12.2.0/rv32imac_zicsr_zifencei/ilp32/:/home/tatan/.espressif/tools/riscv32-esp-elf/esp-12.2.0_20230208/riscv32-esp-elf/bin/../lib/gcc/riscv32-esp-elf/12.2.0/../../../../riscv32-esp-elf/lib/rv32imac_zicsr_zifencei/ilp32/:/home/tatan/.espressif/tools/riscv32-esp-elf/esp-12.2.0_20230208/riscv32-esp-elf/bin/../lib/gcc/riscv32-esp-elf/12.2.0/:/home/tatan/.espressif/tools/riscv32-esp-elf/esp-12.2.0_20230208/riscv32-esp-elf/bin/../lib/gcc/:/home/tatan/.espressif/tools/riscv32-esp-elf/esp-12.2.0_20230208/riscv32-esp-elf/bin/../lib/gcc/riscv32-esp-elf/12.2.0/../../../../riscv32-esp-elf/lib/]
-  ignore line: [COLLECT_GCC_OPTIONS='-nostartfiles' '-march=rv32imac_zicsr_zifencei' '-specs=nosys.specs' '-v' '-o' 'cmTC_32ae9' '-mabi=ilp32' '-misa-spec=20191213' '-march=rv32imac_zicsr_zifencei' '-dumpdir' 'cmTC_32ae9.']
-  link line: [ /home/tatan/.espressif/tools/riscv32-esp-elf/esp-12.2.0_20230208/riscv32-esp-elf/bin/../libexec/gcc/riscv32-esp-elf/12.2.0/collect2 -plugin /home/tatan/.espressif/tools/riscv32-esp-elf/esp-12.2.0_20230208/riscv32-esp-elf/bin/../libexec/gcc/riscv32-esp-elf/12.2.0/liblto_plugin.so -plugin-opt=/home/tatan/.espressif/tools/riscv32-esp-elf/esp-12.2.0_20230208/riscv32-esp-elf/bin/../libexec/gcc/riscv32-esp-elf/12.2.0/lto-wrapper -plugin-opt=-fresolution=/tmp/cckFrxuk.res -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lc -plugin-opt=-pass-through=-lnosys -plugin-opt=-pass-through=-lc -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lc -plugin-opt=-pass-through=-lnosys -melf32lriscv -o cmTC_32ae9 -L/home/tatan/.espressif/tools/riscv32-esp-elf/esp-12.2.0_20230208/riscv32-esp-elf/bin/../lib/gcc/riscv32-esp-elf/12.2.0/rv32imac_zicsr_zifencei/ilp32 -L/home/tatan/.espressif/tools/riscv32-esp-elf/esp-12.2.0_20230208/riscv32-esp-elf/bin/../lib/gcc/riscv32-esp-elf/12.2.0/../../../../riscv32-esp-elf/lib/rv32imac_zicsr_zifencei/ilp32 -L/home/tatan/.espressif/tools/riscv32-esp-elf/esp-12.2.0_20230208/riscv32-esp-elf/bin/../lib/gcc/riscv32-esp-elf/12.2.0 -L/home/tatan/.espressif/tools/riscv32-esp-elf/esp-12.2.0_20230208/riscv32-esp-elf/bin/../lib/gcc -L/home/tatan/.espressif/tools/riscv32-esp-elf/esp-12.2.0_20230208/riscv32-esp-elf/bin/../lib/gcc/riscv32-esp-elf/12.2.0/../../../../riscv32-esp-elf/lib CMakeFiles/cmTC_32ae9.dir/CMakeCXXCompilerABI.cpp.obj -lstdc++ -lm -lgcc -lc -lnosys -lc -lgcc --start-group -lgcc -lc -lnosys --end-group]
+  ignore line: [COLLECT_GCC_OPTIONS='-nostartfiles' '-march=rv32imac_zicsr_zifencei' '-specs=nosys.specs' '-v' '-o' 'cmTC_50e52' '-mabi=ilp32' '-misa-spec=20191213' '-march=rv32imac_zicsr_zifencei' '-dumpdir' 'cmTC_50e52.']
+  link line: [ /home/tatan/.espressif/tools/riscv32-esp-elf/esp-12.2.0_20230208/riscv32-esp-elf/bin/../libexec/gcc/riscv32-esp-elf/12.2.0/collect2 -plugin /home/tatan/.espressif/tools/riscv32-esp-elf/esp-12.2.0_20230208/riscv32-esp-elf/bin/../libexec/gcc/riscv32-esp-elf/12.2.0/liblto_plugin.so -plugin-opt=/home/tatan/.espressif/tools/riscv32-esp-elf/esp-12.2.0_20230208/riscv32-esp-elf/bin/../libexec/gcc/riscv32-esp-elf/12.2.0/lto-wrapper -plugin-opt=-fresolution=/tmp/ccmMPD38.res -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lc -plugin-opt=-pass-through=-lnosys -plugin-opt=-pass-through=-lc -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lc -plugin-opt=-pass-through=-lnosys -melf32lriscv -o cmTC_50e52 -L/home/tatan/.espressif/tools/riscv32-esp-elf/esp-12.2.0_20230208/riscv32-esp-elf/bin/../lib/gcc/riscv32-esp-elf/12.2.0/rv32imac_zicsr_zifencei/ilp32 -L/home/tatan/.espressif/tools/riscv32-esp-elf/esp-12.2.0_20230208/riscv32-esp-elf/bin/../lib/gcc/riscv32-esp-elf/12.2.0/../../../../riscv32-esp-elf/lib/rv32imac_zicsr_zifencei/ilp32 -L/home/tatan/.espressif/tools/riscv32-esp-elf/esp-12.2.0_20230208/riscv32-esp-elf/bin/../lib/gcc/riscv32-esp-elf/12.2.0 -L/home/tatan/.espressif/tools/riscv32-esp-elf/esp-12.2.0_20230208/riscv32-esp-elf/bin/../lib/gcc -L/home/tatan/.espressif/tools/riscv32-esp-elf/esp-12.2.0_20230208/riscv32-esp-elf/bin/../lib/gcc/riscv32-esp-elf/12.2.0/../../../../riscv32-esp-elf/lib CMakeFiles/cmTC_50e52.dir/CMakeCXXCompilerABI.cpp.obj -lstdc++ -lm -lgcc -lc -lnosys -lc -lgcc --start-group -lgcc -lc -lnosys --end-group]
     arg [/home/tatan/.espressif/tools/riscv32-esp-elf/esp-12.2.0_20230208/riscv32-esp-elf/bin/../libexec/gcc/riscv32-esp-elf/12.2.0/collect2] ==> ignore
     arg [-plugin] ==> ignore
     arg [/home/tatan/.espressif/tools/riscv32-esp-elf/esp-12.2.0_20230208/riscv32-esp-elf/bin/../libexec/gcc/riscv32-esp-elf/12.2.0/liblto_plugin.so] ==> ignore
     arg [-plugin-opt=/home/tatan/.espressif/tools/riscv32-esp-elf/esp-12.2.0_20230208/riscv32-esp-elf/bin/../libexec/gcc/riscv32-esp-elf/12.2.0/lto-wrapper] ==> ignore
-    arg [-plugin-opt=-fresolution=/tmp/cckFrxuk.res] ==> ignore
+    arg [-plugin-opt=-fresolution=/tmp/ccmMPD38.res] ==> ignore
     arg [-plugin-opt=-pass-through=-lgcc] ==> ignore
     arg [-plugin-opt=-pass-through=-lc] ==> ignore
     arg [-plugin-opt=-pass-through=-lnosys] ==> ignore
@@ -366,13 +366,13 @@ Parsed CXX implicit link information from above output:
     arg [-plugin-opt=-pass-through=-lnosys] ==> ignore
     arg [-melf32lriscv] ==> ignore
     arg [-o] ==> ignore
-    arg [cmTC_32ae9] ==> ignore
+    arg [cmTC_50e52] ==> ignore
     arg [-L/home/tatan/.espressif/tools/riscv32-esp-elf/esp-12.2.0_20230208/riscv32-esp-elf/bin/../lib/gcc/riscv32-esp-elf/12.2.0/rv32imac_zicsr_zifencei/ilp32] ==> dir [/home/tatan/.espressif/tools/riscv32-esp-elf/esp-12.2.0_20230208/riscv32-esp-elf/bin/../lib/gcc/riscv32-esp-elf/12.2.0/rv32imac_zicsr_zifencei/ilp32]
     arg [-L/home/tatan/.espressif/tools/riscv32-esp-elf/esp-12.2.0_20230208/riscv32-esp-elf/bin/../lib/gcc/riscv32-esp-elf/12.2.0/../../../../riscv32-esp-elf/lib/rv32imac_zicsr_zifencei/ilp32] ==> dir [/home/tatan/.espressif/tools/riscv32-esp-elf/esp-12.2.0_20230208/riscv32-esp-elf/bin/../lib/gcc/riscv32-esp-elf/12.2.0/../../../../riscv32-esp-elf/lib/rv32imac_zicsr_zifencei/ilp32]
     arg [-L/home/tatan/.espressif/tools/riscv32-esp-elf/esp-12.2.0_20230208/riscv32-esp-elf/bin/../lib/gcc/riscv32-esp-elf/12.2.0] ==> dir [/home/tatan/.espressif/tools/riscv32-esp-elf/esp-12.2.0_20230208/riscv32-esp-elf/bin/../lib/gcc/riscv32-esp-elf/12.2.0]
     arg [-L/home/tatan/.espressif/tools/riscv32-esp-elf/esp-12.2.0_20230208/riscv32-esp-elf/bin/../lib/gcc] ==> dir [/home/tatan/.espressif/tools/riscv32-esp-elf/esp-12.2.0_20230208/riscv32-esp-elf/bin/../lib/gcc]
     arg [-L/home/tatan/.espressif/tools/riscv32-esp-elf/esp-12.2.0_20230208/riscv32-esp-elf/bin/../lib/gcc/riscv32-esp-elf/12.2.0/../../../../riscv32-esp-elf/lib] ==> dir [/home/tatan/.espressif/tools/riscv32-esp-elf/esp-12.2.0_20230208/riscv32-esp-elf/bin/../lib/gcc/riscv32-esp-elf/12.2.0/../../../../riscv32-esp-elf/lib]
-    arg [CMakeFiles/cmTC_32ae9.dir/CMakeCXXCompilerABI.cpp.obj] ==> ignore
+    arg [CMakeFiles/cmTC_50e52.dir/CMakeCXXCompilerABI.cpp.obj] ==> ignore
     arg [-lstdc++] ==> lib [stdc++]
     arg [-lm] ==> lib [m]
     arg [-lgcc] ==> lib [gcc]
@@ -399,8 +399,8 @@ Parsed CXX implicit link information from above output:
 Determining if the include file sys/types.h exists passed with the following output:
 Change Dir: /mnt/c/Users/tatan/Documentos/UNAL/8_License_Plate/Linux/4201152-Sist-linux-embebidos/Proyecto/Node_Tank/build/bootloader/CMakeFiles/CMakeTmp
 
-Run Build Command(s):/home/tatan/.espressif/tools/ninja/1.10.2/ninja cmTC_39e2a && [1/2] Building C object CMakeFiles/cmTC_39e2a.dir/CheckIncludeFile.c.obj
-[2/2] Linking C executable cmTC_39e2a
+Run Build Command(s):/home/tatan/.espressif/tools/ninja/1.10.2/ninja cmTC_35fde && [1/2] Building C object CMakeFiles/cmTC_35fde.dir/CheckIncludeFile.c.obj
+[2/2] Linking C executable cmTC_35fde
 /home/tatan/.espressif/tools/riscv32-esp-elf/esp-12.2.0_20230208/riscv32-esp-elf/bin/../lib/gcc/riscv32-esp-elf/12.2.0/../../../../riscv32-esp-elf/bin/ld: warning: cannot find entry symbol _start; defaulting to 0000000000010074
 
 
@@ -408,8 +408,8 @@ Run Build Command(s):/home/tatan/.espressif/tools/ninja/1.10.2/ninja cmTC_39e2a 
 Determining if the include file stdint.h exists passed with the following output:
 Change Dir: /mnt/c/Users/tatan/Documentos/UNAL/8_License_Plate/Linux/4201152-Sist-linux-embebidos/Proyecto/Node_Tank/build/bootloader/CMakeFiles/CMakeTmp
 
-Run Build Command(s):/home/tatan/.espressif/tools/ninja/1.10.2/ninja cmTC_ca845 && [1/2] Building C object CMakeFiles/cmTC_ca845.dir/CheckIncludeFile.c.obj
-[2/2] Linking C executable cmTC_ca845
+Run Build Command(s):/home/tatan/.espressif/tools/ninja/1.10.2/ninja cmTC_2f52c && [1/2] Building C object CMakeFiles/cmTC_2f52c.dir/CheckIncludeFile.c.obj
+[2/2] Linking C executable cmTC_2f52c
 /home/tatan/.espressif/tools/riscv32-esp-elf/esp-12.2.0_20230208/riscv32-esp-elf/bin/../lib/gcc/riscv32-esp-elf/12.2.0/../../../../riscv32-esp-elf/bin/ld: warning: cannot find entry symbol _start; defaulting to 0000000000010074
 
 
@@ -417,8 +417,8 @@ Run Build Command(s):/home/tatan/.espressif/tools/ninja/1.10.2/ninja cmTC_ca845 
 Determining if the include file stddef.h exists passed with the following output:
 Change Dir: /mnt/c/Users/tatan/Documentos/UNAL/8_License_Plate/Linux/4201152-Sist-linux-embebidos/Proyecto/Node_Tank/build/bootloader/CMakeFiles/CMakeTmp
 
-Run Build Command(s):/home/tatan/.espressif/tools/ninja/1.10.2/ninja cmTC_25bc2 && [1/2] Building C object CMakeFiles/cmTC_25bc2.dir/CheckIncludeFile.c.obj
-[2/2] Linking C executable cmTC_25bc2
+Run Build Command(s):/home/tatan/.espressif/tools/ninja/1.10.2/ninja cmTC_90130 && [1/2] Building C object CMakeFiles/cmTC_90130.dir/CheckIncludeFile.c.obj
+[2/2] Linking C executable cmTC_90130
 /home/tatan/.espressif/tools/riscv32-esp-elf/esp-12.2.0_20230208/riscv32-esp-elf/bin/../lib/gcc/riscv32-esp-elf/12.2.0/../../../../riscv32-esp-elf/bin/ld: warning: cannot find entry symbol _start; defaulting to 0000000000010074
 
 
@@ -426,8 +426,8 @@ Run Build Command(s):/home/tatan/.espressif/tools/ninja/1.10.2/ninja cmTC_25bc2 
 Determining size of time_t passed with the following output:
 Change Dir: /mnt/c/Users/tatan/Documentos/UNAL/8_License_Plate/Linux/4201152-Sist-linux-embebidos/Proyecto/Node_Tank/build/bootloader/CMakeFiles/CMakeTmp
 
-Run Build Command(s):/home/tatan/.espressif/tools/ninja/1.10.2/ninja cmTC_ddbef && [1/2] Building C object CMakeFiles/cmTC_ddbef.dir/TIME_T_SIZE.c.obj
-[2/2] Linking C executable cmTC_ddbef
+Run Build Command(s):/home/tatan/.espressif/tools/ninja/1.10.2/ninja cmTC_f2c2d && [1/2] Building C object CMakeFiles/cmTC_f2c2d.dir/TIME_T_SIZE.c.obj
+[2/2] Linking C executable cmTC_f2c2d
 /home/tatan/.espressif/tools/riscv32-esp-elf/esp-12.2.0_20230208/riscv32-esp-elf/bin/../lib/gcc/riscv32-esp-elf/12.2.0/../../../../riscv32-esp-elf/bin/ld: warning: cannot find entry symbol _start; defaulting to 0000000000010094
 
 

@@ -13,6 +13,7 @@ static const char *TAG = "TASKS";
 
 // Declaración forward de función estática
 static void task_sensor_read_loop(void *pvParameters);
+// (button support removed) 
 
 // Variables globales
 static shared_sensor_data_t g_sensor_data = {
@@ -22,6 +23,7 @@ static shared_sensor_data_t g_sensor_data = {
 
 static int g_pump_relay_pin = -1;
 static bool g_pump_relay_state = false;
+static pump_state_cb_t g_pump_cb = NULL;
 
 /**
  * @brief Inicializa el sistema de tareas FreeRTOS
@@ -74,6 +76,8 @@ esp_err_t tasks_init(const task_config_t *config)
     g_pump_relay_state = false;
     ESP_LOGD(TAG, "  ✓ Pin del relé configurado (pin %d)", g_pump_relay_pin);
 
+    // Button support disabled: control is via MQTT only
+
     // ========== Crear tarea de lectura de sensores ==========
     xTaskCreate(task_sensor_read_loop,
                 "sensor_read_task",
@@ -85,6 +89,8 @@ esp_err_t tasks_init(const task_config_t *config)
     ESP_LOGI(TAG, "✓ Sistema de tareas inicializado");
     return ESP_OK;
 }
+
+/* Button task removed: hardware button is disabled to ensure Node-RED is sole controller */
 
 /**
  * @brief Tarea FreeRTOS para lectura periódica de sensores
@@ -174,10 +180,25 @@ esp_err_t tasks_set_pump_relay(bool enable)
         g_pump_relay_state = enable;
         
         ESP_LOGI(TAG, "→ Relé de bomba: %s", enable ? "ENCENDIDO" : "APAGADO");
+        if (g_pump_cb) {
+            g_pump_cb(g_pump_relay_state);
+        }
     }
 
     return ESP_OK;
 }
+
+bool tasks_is_button_pressed(void)
+{
+    // Button disabled: always return false
+    return false;
+}
+
+void tasks_register_pump_state_cb(pump_state_cb_t cb)
+{
+    g_pump_cb = cb;
+}
+/* Button support removed: tasks_register_button_cb omitted */
 
 /**
  * @brief Obtiene el estado actual del relé de la bomba

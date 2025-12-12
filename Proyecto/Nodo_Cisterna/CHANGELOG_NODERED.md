@@ -18,7 +18,7 @@ static void mqtt_event_handler(...) {
     
     if (event_id == MQTT_EVENT_DATA) {
         if (strncmp(event->topic, "cistern_control", event->topic_len) == 0) {
-            // Procesar comandos: ON / OFF / AUTO
+            // Procesar comandos: ON / OFF
             if (strcasecmp(payload, "ON") == 0) {
                 tasks_set_pump_relay(true);
                 pump_manual_override = true;
@@ -85,7 +85,7 @@ ESP_LOGI(TAG, "-> Suscrito a topico 'cistern_control'...");
    - Flujo JSON completamente funcional para Node-RED
    - 15 nodos: MQTT in/out, gauges, botones, debug
    - Suscriptores a todos los tópicos
-   - Botones de control (ON/OFF/AUTO)
+   - Botones de control (ON/OFF)
    - Listo para importar en Node-RED
 
 #### Archivos Modificados:
@@ -111,7 +111,7 @@ ESP_LOGI(TAG, "-> Suscrito a topico 'cistern_control'...");
 ### Suscribe (Node-RED → ESP32)
 | Topic | Valores |
 |-------|---------|
-| `cistern_control` | ON, OFF, AUTO |
+| `cistern_control` | ON, OFF |
 
 ---
 

@@ -40,7 +40,7 @@ http://192.168.60.10:1880
 En Node-RED:
 - Haz click en botón **ON** → La bomba se enciende
 - Haz click en botón **OFF** → La bomba se apaga
-- Haz click en botón **AUTO** → Vuelve a automático
+-- (Nota) Para volver a 'modo automático', configura Node-RED para publicar `ON`/`OFF` según reglas; no hay botón AUTO en el dashboard
 
 Deberías ver en el monitor:
 ```
@@ -83,7 +83,8 @@ cistern/pump_state    →  ON
 
 ### Que ESP32 ESCUCHA:
 ```
-cistern_control  ←  ON / OFF / AUTO
+cistern_control  ←  ON / OFF
+Nota: El modo manual (MANUAL) se sustituye por un botón físico en el ESP32: pulsar → ON, soltar → OFF.
 ```
 
 ---
@@ -127,16 +128,10 @@ cistern_control  ←  ON / OFF / AUTO
 2. Espera 10 segundos
 3. Vuelve a abrir la página en el navegador (F5)
 
----
 
 ## Archivos de Referencia
 
-- `NODERED_INTEGRATION.md` - Guía detallada (leer si tienes problemas)
-- `NODERED_FLOW_EXAMPLE.json` - Flujo importable
-- `CHANGELOG_NODERED.md` - Cambios técnicos
-- `README.md` - Documentación completa
 
----
 
 ## Comandos Útiles
 
@@ -153,7 +148,7 @@ mosquitto_sub -h 10.42.0.111 -t "cistern/pump_state"
 # Controlar desde terminal
 mosquitto_pub -h 10.42.0.111 -t "cistern_control" -m "ON"
 mosquitto_pub -h 10.42.0.111 -t "cistern_control" -m "OFF"
-mosquitto_pub -h 10.42.0.111 -t "cistern_control" -m "AUTO"
+// Para modo automático: implementa la lógica en Node-RED que publique `ON`/`OFF` según el nivel y/o calidad del agua (ej. un nodo switch + regla)
 ```
 
 ---

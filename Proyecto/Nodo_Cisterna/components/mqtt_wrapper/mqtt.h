@@ -22,7 +22,7 @@ esp_err_t mqtt_connect(void *client);
 esp_err_t mqtt_disconnect(void *client);
 
 int mqtt_publish(void *client, const char *topic,
-                 const char *data, int data_len, int qos);
+                 const char *data, int data_len, int qos, bool retain);
 
 int mqtt_subscribe(void *client, const char *topic, int qos);
 
